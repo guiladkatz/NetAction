@@ -1,0 +1,590 @@
+pkg_info {
+  arch: "v1model"
+}
+tables {
+  preamble {
+    id: 33570712
+    name: "basic_tutorial_ingress.downstream1.lfu"
+    alias: "downstream1.lfu"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: LPM
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  action_refs {
+    id: 16825977
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33585413
+    name: "basic_tutorial_ingress.downstream1.t_vxlan_segment"
+    alias: "downstream1.t_vxlan_segment"
+  }
+  match_fields {
+    id: 1
+    name: "standard_metadata.ingress_port"
+    bitwidth: 9
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  action_refs {
+    id: 16801438
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33598086
+    name: "basic_tutorial_ingress.downstream1.flow_cache"
+    alias: "downstream1.flow_cache"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: LPM
+  }
+  action_refs {
+    id: 16832473
+  }
+  action_refs {
+    id: 16834229
+  }
+  action_refs {
+    id: 16825977
+  }
+  direct_resource_ids: 318795723
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33575632
+    name: "basic_tutorial_ingress.downstream1.t_vtep"
+    alias: "downstream1.t_vtep"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ethernet.srcAddr"
+    bitwidth: 48
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16826148
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33563934
+    name: "basic_tutorial_ingress.downstream1.t_controller"
+    alias: "downstream1.t_controller"
+  }
+  match_fields {
+    id: 1
+    name: "standard_metadata.egress_spec"
+    bitwidth: 9
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16802013
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33569790
+    name: "basic_tutorial_ingress.downstream2.lfu"
+    alias: "downstream2.lfu"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: LPM
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  action_refs {
+    id: 16790195
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33587824
+    name: "basic_tutorial_ingress.downstream2.t_vxlan_segment"
+    alias: "downstream2.t_vxlan_segment"
+  }
+  match_fields {
+    id: 1
+    name: "standard_metadata.ingress_port"
+    bitwidth: 9
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  action_refs {
+    id: 16785187
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33581301
+    name: "basic_tutorial_ingress.downstream2.flow_cache"
+    alias: "downstream2.flow_cache"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: LPM
+  }
+  action_refs {
+    id: 16788887
+  }
+  action_refs {
+    id: 16778288
+  }
+  action_refs {
+    id: 16790195
+  }
+  direct_resource_ids: 318770650
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33587003
+    name: "basic_tutorial_ingress.downstream2.t_vtep"
+    alias: "downstream2.t_vtep"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ethernet.srcAddr"
+    bitwidth: 48
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16826204
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33584923
+    name: "basic_tutorial_ingress.downstream2.t_controller"
+    alias: "downstream2.t_controller"
+  }
+  match_fields {
+    id: 1
+    name: "standard_metadata.egress_spec"
+    bitwidth: 9
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16799328
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33602550
+    name: "basic_tutorial_ingress.upstream.t_vxlan_term"
+    alias: "t_vxlan_term"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.inner_ethernet.dstAddr"
+    bitwidth: 48
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  action_refs {
+    id: 16814940
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33560388
+    name: "basic_tutorial_ingress.upstream.t_forward_l2"
+    alias: "t_forward_l2"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.inner_ethernet.dstAddr"
+    bitwidth: 48
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16826628
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33597835
+    name: "basic_tutorial_ingress.upstream.t_forward_underlay"
+    alias: "t_forward_underlay"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16802560
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 33619850
+    name: "basic_tutorial_egress.downstream.t_send_frame"
+    alias: "t_send_frame"
+  }
+  match_fields {
+    id: 1
+    name: "hdr.ipv4.dstAddr"
+    bitwidth: 32
+    match_type: EXACT
+  }
+  action_refs {
+    id: 16788060
+  }
+  action_refs {
+    id: 16800567
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 1024
+}
+actions {
+  preamble {
+    id: 16800567
+    name: "NoAction"
+    alias: "NoAction"
+  }
+}
+actions {
+  preamble {
+    id: 16801438
+    name: "basic_tutorial_ingress.downstream1.set_vni"
+    alias: "downstream1.set_vni"
+  }
+  params {
+    id: 1
+    name: "vni"
+    bitwidth: 24
+  }
+}
+actions {
+  preamble {
+    id: 16834229
+    name: "basic_tutorial_ingress.downstream1.send_to_controller"
+    alias: "downstream1.send_to_controller"
+  }
+}
+actions {
+  preamble {
+    id: 16832473
+    name: "basic_tutorial_ingress.downstream1.set_outer_dst_ip"
+    alias: "downstream1.set_outer_dst_ip"
+  }
+  params {
+    id: 1
+    name: "dst_ip"
+    bitwidth: 32
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16825977
+    name: "basic_tutorial_ingress.downstream1.drop"
+    alias: "downstream1.drop"
+  }
+}
+actions {
+  preamble {
+    id: 16826148
+    name: "basic_tutorial_ingress.downstream1.set_vtep_ip"
+    alias: "downstream1.set_vtep_ip"
+  }
+  params {
+    id: 1
+    name: "vtep_ip"
+    bitwidth: 32
+  }
+}
+actions {
+  preamble {
+    id: 16802013
+    name: "basic_tutorial_ingress.downstream1.set_controller_ip_and_port"
+    alias: "downstream1.set_controller_ip_and_port"
+  }
+  params {
+    id: 1
+    name: "dst_ip"
+    bitwidth: 32
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16812232
+    name: "basic_tutorial_ingress.downstream1.set_arp"
+    alias: "downstream1.set_arp"
+  }
+}
+actions {
+  preamble {
+    id: 16785187
+    name: "basic_tutorial_ingress.downstream2.set_vni"
+    alias: "downstream2.set_vni"
+  }
+  params {
+    id: 1
+    name: "vni"
+    bitwidth: 24
+  }
+}
+actions {
+  preamble {
+    id: 16778288
+    name: "basic_tutorial_ingress.downstream2.send_to_controller"
+    alias: "downstream2.send_to_controller"
+  }
+}
+actions {
+  preamble {
+    id: 16788887
+    name: "basic_tutorial_ingress.downstream2.set_outer_dst_ip"
+    alias: "downstream2.set_outer_dst_ip"
+  }
+  params {
+    id: 1
+    name: "dst_ip"
+    bitwidth: 32
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16790195
+    name: "basic_tutorial_ingress.downstream2.drop"
+    alias: "downstream2.drop"
+  }
+}
+actions {
+  preamble {
+    id: 16826204
+    name: "basic_tutorial_ingress.downstream2.set_vtep_ip"
+    alias: "downstream2.set_vtep_ip"
+  }
+  params {
+    id: 1
+    name: "vtep_ip"
+    bitwidth: 32
+  }
+}
+actions {
+  preamble {
+    id: 16799328
+    name: "basic_tutorial_ingress.downstream2.set_controller_ip_and_port"
+    alias: "downstream2.set_controller_ip_and_port"
+  }
+  params {
+    id: 1
+    name: "dst_ip"
+    bitwidth: 32
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16797805
+    name: "basic_tutorial_ingress.downstream2.set_arp"
+    alias: "downstream2.set_arp"
+  }
+}
+actions {
+  preamble {
+    id: 16814940
+    name: "basic_tutorial_ingress.upstream.vxlan_decap"
+    alias: "vxlan_decap"
+  }
+}
+actions {
+  preamble {
+    id: 16826628
+    name: "basic_tutorial_ingress.upstream.forward"
+    alias: "forward"
+  }
+  params {
+    id: 1
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16802560
+    name: "basic_tutorial_ingress.upstream.forward_underlay"
+    alias: "forward_underlay"
+  }
+  params {
+    id: 1
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 16788060
+    name: "basic_tutorial_egress.downstream.rewrite_macs"
+    alias: "rewrite_macs"
+  }
+  params {
+    id: 1
+    name: "smac"
+    bitwidth: 48
+  }
+  params {
+    id: 2
+    name: "dmac"
+    bitwidth: 48
+  }
+}
+actions {
+  preamble {
+    id: 16799015
+    name: "basic_tutorial_egress.downstream.vxlan_encap"
+    alias: "vxlan_encap"
+  }
+}
+direct_counters {
+  preamble {
+    id: 318795723
+    name: "basic_tutorial_ingress.downstream1.my_direct_counter"
+    alias: "downstream1.my_direct_counter"
+  }
+  spec {
+    unit: PACKETS
+  }
+  direct_table_id: 33598086
+}
+direct_counters {
+  preamble {
+    id: 318770650
+    name: "basic_tutorial_ingress.downstream2.my_direct_counter"
+    alias: "downstream2.my_direct_counter"
+  }
+  spec {
+    unit: PACKETS
+  }
+  direct_table_id: 33581301
+}
+controller_packet_metadata {
+  preamble {
+    id: 67146229
+    name: "packet_in"
+    alias: "packet_in"
+    annotations: "@controller_header(\"packet_in\")"
+  }
+  metadata {
+    id: 1
+    name: "ingress_port"
+    bitwidth: 16
+  }
+}
+controller_packet_metadata {
+  preamble {
+    id: 67121543
+    name: "packet_out"
+    alias: "packet_out"
+    annotations: "@controller_header(\"packet_out\")"
+  }
+  metadata {
+    id: 1
+    name: "egress_port"
+    bitwidth: 16
+  }
+  metadata {
+    id: 2
+    name: "mcast_grp"
+    bitwidth: 16
+  }
+}
+type_info {
+}

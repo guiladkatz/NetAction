@@ -1,0 +1,1504 @@
+
+[2021-02-14 01:21:14.226] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:14.228] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:15.230] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:15.232] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:16.235] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:16.238] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:17.240] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:17.242] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:18.244] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:18.246] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:19.250] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:19.253] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:20.255] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:20.258] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:21.260] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:21.262] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:22.265] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:22.269] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:23.273] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:23.276] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:24.279] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:24.281] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:25.285] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:25.286] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:26.290] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:26.292] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:27.296] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:27.298] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:28.300] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:28.305] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:29.310] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:29.312] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:30.314] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:30.316] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:31.321] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:31.322] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:32.326] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:32.327] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:33.331] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:33.335] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:34.338] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:34.340] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:35.345] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:35.346] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:36.351] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:36.357] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\001"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:36.360] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\002"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:36.363] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\003"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:36.366] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:36.369] /p4.v1.P4Runtime/Write
+---
+role_id: 3
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33570712
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\001"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:37.373] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:37.385] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\003"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:37.389] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\005"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:37.392] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\006"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:37.394] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\002"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:37.397] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\001"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:37.400] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:37.404] /p4.v1.P4Runtime/Write
+---
+role_id: 3
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33570712
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\003"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:37.407] /p4.v1.P4Runtime/Write
+---
+role_id: 3
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33570712
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\001"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:38.411] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:38.415] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\t"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:38.418] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\005"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:38.421] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\010"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:38.424] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\004"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:38.426] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\002"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:38.428] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:38.432] /p4.v1.P4Runtime/Write
+---
+role_id: 3
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33570712
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\t"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:38.435] /p4.v1.P4Runtime/Write
+---
+role_id: 3
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33570712
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\003"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:39.440] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:39.456] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\t"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:39.463] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\003"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:39.466] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\007"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:39.469] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\001"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:39.471] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\004"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:39.473] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:40.478] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:40.483] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\016"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:40.486] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\006"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:40.489] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\002"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:40.491] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\017"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:40.495] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\004"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:40.498] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:40.503] /p4.v1.P4Runtime/Write
+---
+role_id: 3
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33570712
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\016"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:40.507] /p4.v1.P4Runtime/Write
+---
+role_id: 3
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33570712
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\t"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:41.512] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:41.518] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\016"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:41.522] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\007"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:41.525] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\020"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:41.529] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\021"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:41.533] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\005"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:41.536] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:42.544] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:42.551] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\006"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:42.563] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\001"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:42.566] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\017"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:42.571] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\020"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:42.574] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\007"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:42.577] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:42.581] /p4.v1.P4Runtime/Write
+---
+role_id: 3
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33570712
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\006"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:42.585] /p4.v1.P4Runtime/Write
+---
+role_id: 3
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33570712
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\016"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:43.589] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33598086
+  }
+}
+---
+
+[2021-02-14 01:21:43.602] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\005"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:43.610] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\023"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:43.614] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\t"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:43.618] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\014"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:43.622] /p4.v1.P4Runtime/Read
+---
+entities {
+  direct_counter_entry {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\024"
+          prefix_len: 32
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-14 01:21:43.625] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-14 01:21:43.629] /p4.v1.P4Runtime/Write
+---
+role_id: 3
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33570712
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\005"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
