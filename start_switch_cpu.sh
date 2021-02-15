@@ -1,6 +1,6 @@
 #!/bin/sh
 
 sudo python switch_cpu.py \
-    --p4info basic_tutorial_switch.p4info \
-    --bmv2-json basic_tutorial_switch.json \
+    --p4info net_action.p4info \
+    --bmv2-json net_action.json \
     --my_topology topology.json

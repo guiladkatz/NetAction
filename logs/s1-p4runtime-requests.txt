@@ -1,10 +1,10 @@
 
-[2021-02-14 01:21:02.045] /p4.v1.P4Runtime/SetForwardingPipelineConfig
+[2021-02-15 17:07:11.952] /p4.v1.P4Runtime/SetForwardingPipelineConfig
 ---
-Message too long (119449 bytes)! Skipping log...
+Message too long (119383 bytes)! Skipping log...
 ---
 
-[2021-02-14 01:21:02.276] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.124] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -31,7 +31,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.298] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.133] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -58,7 +58,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.306] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.138] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -89,7 +89,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.322] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.145] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -120,7 +120,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.328] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.155] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -151,7 +151,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.331] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.163] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -182,7 +182,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.341] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.175] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -217,7 +217,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.349] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.180] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -248,7 +248,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.356] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.184] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -279,7 +279,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.364] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.191] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -314,7 +314,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.374] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.195] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -345,7 +345,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.378] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.200] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -376,7 +376,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.382] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.208] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -411,7 +411,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:02.393] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:12.220] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -446,35 +446,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:35.692] /p4.v1.P4Runtime/Write
----
-role_id: 2
-election_id {
-  low: 2
-}
-updates {
-  type: INSERT
-  entity {
-    table_entry {
-      table_id: 33598086
-      match {
-        field_id: 1
-        lpm {
-          value: "\n\014\014\001"
-          prefix_len: 32
-        }
-      }
-      action {
-        action {
-          action_id: 16825977
-        }
-      }
-    }
-  }
-}
----
-
-[2021-02-14 01:21:36.023] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:35.602] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -502,119 +474,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:36.349] /p4.v1.P4Runtime/Write
----
-role_id: 2
-election_id {
-  low: 2
-}
-updates {
-  type: INSERT
-  entity {
-    table_entry {
-      table_id: 33598086
-      match {
-        field_id: 1
-        lpm {
-          value: "\n\014\014\003"
-          prefix_len: 32
-        }
-      }
-      action {
-        action {
-          action_id: 16825977
-        }
-      }
-    }
-  }
-}
----
-
-[2021-02-14 01:21:36.675] /p4.v1.P4Runtime/Write
----
-role_id: 2
-election_id {
-  low: 2
-}
-updates {
-  type: INSERT
-  entity {
-    table_entry {
-      table_id: 33598086
-      match {
-        field_id: 1
-        lpm {
-          value: "\n\014\014\004"
-          prefix_len: 32
-        }
-      }
-      action {
-        action {
-          action_id: 16825977
-        }
-      }
-    }
-  }
-}
----
-
-[2021-02-14 01:21:37.011] /p4.v1.P4Runtime/Write
----
-role_id: 2
-election_id {
-  low: 2
-}
-updates {
-  type: INSERT
-  entity {
-    table_entry {
-      table_id: 33598086
-      match {
-        field_id: 1
-        lpm {
-          value: "\n\014\014\005"
-          prefix_len: 32
-        }
-      }
-      action {
-        action {
-          action_id: 16825977
-        }
-      }
-    }
-  }
-}
----
-
-[2021-02-14 01:21:37.334] /p4.v1.P4Runtime/Write
----
-role_id: 2
-election_id {
-  low: 2
-}
-updates {
-  type: INSERT
-  entity {
-    table_entry {
-      table_id: 33598086
-      match {
-        field_id: 1
-        lpm {
-          value: "\n\014\014\006"
-          prefix_len: 32
-        }
-      }
-      action {
-        action {
-          action_id: 16825977
-        }
-      }
-    }
-  }
-}
----
-
-[2021-02-14 01:21:37.667] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:36.925] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -642,7 +502,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:38.000] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:37.588] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -656,7 +516,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\010"
+          value: "\n\014\014\001"
           prefix_len: 32
         }
       }
@@ -670,7 +530,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:38.334] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:37.921] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -698,7 +558,175 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:38.667] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:38.549] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\010"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:07:39.901] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\005"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:07:42.246] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\004"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:07:43.245] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\014\006"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:07:44.371] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\002"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:07:45.204] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\007"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:07:45.589] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -726,7 +754,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:38.994] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:46.033] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -740,7 +768,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\013"
+          value: "\n\014\r\t"
           prefix_len: 32
         }
       }
@@ -754,7 +782,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:39.328] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:46.697] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -768,7 +796,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\014"
+          value: "\n\014\016\001"
           prefix_len: 32
         }
       }
@@ -782,7 +810,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:39.659] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:47.932] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -796,7 +824,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\r"
+          value: "\n\014\016\t"
           prefix_len: 32
         }
       }
@@ -810,7 +838,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:39.986] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:49.886] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -824,7 +852,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\016"
+          value: "\n\014\014\010"
           prefix_len: 32
         }
       }
@@ -838,7 +866,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:40.318] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:51.207] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -852,7 +880,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\017"
+          value: "\n\014\014\003"
           prefix_len: 32
         }
       }
@@ -866,7 +894,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:40.647] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:54.330] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -880,7 +908,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\020"
+          value: "\n\014\r\004"
           prefix_len: 32
         }
       }
@@ -894,7 +922,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:40.972] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:57.812] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -908,7 +936,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\021"
+          value: "\n\014\016\003"
           prefix_len: 32
         }
       }
@@ -922,7 +950,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:41.298] /p4.v1.P4Runtime/Write
+[2021-02-15 17:07:59.339] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -936,7 +964,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\022"
+          value: "\n\014\r\001"
           prefix_len: 32
         }
       }
@@ -950,7 +978,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:41.619] /p4.v1.P4Runtime/Write
+[2021-02-15 17:08:01.001] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -964,7 +992,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\023"
+          value: "\n\014\r\006"
           prefix_len: 32
         }
       }
@@ -978,35 +1006,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:41.958] /p4.v1.P4Runtime/Write
----
-role_id: 2
-election_id {
-  low: 2
-}
-updates {
-  type: INSERT
-  entity {
-    table_entry {
-      table_id: 33598086
-      match {
-        field_id: 1
-        lpm {
-          value: "\n\014\014\024"
-          prefix_len: 32
-        }
-      }
-      action {
-        action {
-          action_id: 16825977
-        }
-      }
-    }
-  }
-}
----
-
-[2021-02-14 01:21:42.278] /p4.v1.P4Runtime/Read
+[2021-02-15 17:08:01.829] /p4.v1.P4Runtime/Read
 ---
 entities {
   table_entry {
@@ -1015,7 +1015,7 @@ entities {
 }
 ---
 
-[2021-02-14 01:21:42.290] /p4.v1.P4Runtime/Write
+[2021-02-15 17:08:01.843] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -1029,7 +1029,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\016"
+          value: "\n\014\r\007"
           prefix_len: 32
         }
       }
@@ -1043,7 +1043,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:42.313] /p4.v1.P4Runtime/Write
+[2021-02-15 17:08:01.850] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -1057,7 +1057,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\025"
+          value: "\n\014\r\003"
           prefix_len: 32
         }
       }
@@ -1071,7 +1071,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:42.618] /p4.v1.P4Runtime/Read
+[2021-02-15 17:08:03.481] /p4.v1.P4Runtime/Read
 ---
 entities {
   table_entry {
@@ -1080,7 +1080,7 @@ entities {
 }
 ---
 
-[2021-02-14 01:21:42.625] /p4.v1.P4Runtime/Write
+[2021-02-15 17:08:03.491] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -1094,7 +1094,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\006"
+          value: "\n\014\016\001"
           prefix_len: 32
         }
       }
@@ -1108,7 +1108,7 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:42.631] /p4.v1.P4Runtime/Write
+[2021-02-15 17:08:03.498] /p4.v1.P4Runtime/Write
 ---
 role_id: 2
 election_id {
@@ -1122,7 +1122,7 @@ updates {
       match {
         field_id: 1
         lpm {
-          value: "\n\014\014\026"
+          value: "\n\014\r\005"
           prefix_len: 32
         }
       }
@@ -1136,11 +1136,1172 @@ updates {
 }
 ---
 
-[2021-02-14 01:21:42.943] /p4.v1.P4Runtime/Read
+[2021-02-15 17:08:05.201] /p4.v1.P4Runtime/Read
 ---
 entities {
   table_entry {
     table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:05.210] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\001"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:05.217] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\005"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:09.088] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:09.096] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\005"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:09.154] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\007"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:10.319] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:10.326] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\004"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:10.332] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\001"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:11.245] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:11.252] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\006"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:11.257] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\007"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:12.782] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:12.786] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\003"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:12.789] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\004"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:13.748] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:13.752] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\007"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:13.761] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\n"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:15.248] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:15.256] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\004"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:15.263] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\002"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:18.748] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:18.759] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\003"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:18.768] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\001"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:22.658] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:22.660] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\001"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:22.666] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\006"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:26.349] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:26.353] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\001"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:26.358] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\n"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:27.047] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:27.053] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\002"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:27.056] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\006"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:30.095] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:30.101] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\005"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:30.107] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\005"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:33.818] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:33.827] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\002"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:33.830] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\010"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:36.347] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:36.354] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\t"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:36.361] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\002"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:46.189] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:46.201] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\n"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:46.205] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\003"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:46.505] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:46.517] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\006"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:46.524] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\004"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:48.296] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:48.304] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\003"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:48.313] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\001"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:50.104] /p4.v1.P4Runtime/Read
+---
+entities {
+  table_entry {
+    table_id: 33570712
+  }
+}
+---
+
+[2021-02-15 17:08:50.112] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: DELETE
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\016\005"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
+  }
+}
+---
+
+[2021-02-15 17:08:50.121] /p4.v1.P4Runtime/Write
+---
+role_id: 2
+election_id {
+  low: 2
+}
+updates {
+  type: INSERT
+  entity {
+    table_entry {
+      table_id: 33598086
+      match {
+        field_id: 1
+        lpm {
+          value: "\n\014\r\t"
+          prefix_len: 32
+        }
+      }
+      action {
+        action {
+          action_id: 16825977
+        }
+      }
+    }
   }
 }
 ---

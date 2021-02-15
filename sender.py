@@ -24,10 +24,10 @@ def fast_flow(time):
         count += 1
         sleep(0.3)
         new_dst_ip = dst_ip.split(".")
-        new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
-        if(count == 25):
-            count = 0
-        #new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,10))
+        #new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
+        #if(count == 25):
+        #    count = 0
+        new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,10))
         new_dst_ip = ".".join(new_dst_ip)
         pkt[IP].dst = new_dst_ip
         #pkt.show2()
@@ -47,10 +47,10 @@ def med_flow(time):
         sleep(0.8)
         count += 1
         new_dst_ip = dst_ip.split(".")
-        new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
-        if(count == 10):
-            count = 0
-        #new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,10))
+        #new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
+        #if(count == 10):
+        #    count = 0
+        new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,10))
         new_dst_ip = ".".join(new_dst_ip)
         pkt[IP].dst = new_dst_ip
         #pkt.show2()
@@ -70,10 +70,10 @@ def slow_flow(time):
         sleep(1.2)
         count += 1
         new_dst_ip = dst_ip.split(".")
-        new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
-        if(count == 10):
-            count = 0
-        #new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,10))
+        #new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
+        #if(count == 10):
+        #    count = 0
+        new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,10))
         new_dst_ip = ".".join(new_dst_ip)
         pkt[IP].dst = new_dst_ip
         #pkt.show2()
@@ -86,10 +86,10 @@ def main():
         run_time = 1600
         fast_thread = threading.Thread(target=fast_flow, args = (run_time,))
         fast_thread.start()
-        #med_thread = threading.Thread(target=med_flow, args = (run_time,))
-        #med_thread.start()
-        #slow_thread = threading.Thread(target=slow_flow, args = (run_time,))
-        #slow_thread.start()
+        med_thread = threading.Thread(target=med_flow, args = (run_time,))
+        med_thread.start()
+        slow_thread = threading.Thread(target=slow_flow, args = (run_time,))
+        slow_thread.start()
 
         fast_thread.join()
         med_thread.join()

@@ -19,12 +19,8 @@ sys.path.append(
     os.path.join(os.path.dirname(os.path.abspath(__file__)),
         '../../../utils/'))
 
-SWITCH_TO_HOST_PORT = 1
-SWITCH_TO_SWITCH_PORT = 2
-CPU_SLAVE_ELECTION_ID = 1
-CPU_MASTER_ELECTION_ID = 3 #Controller ELECTION_ID is 2
 CPU_ROLE_ID = 3
-
+RANDOM_RULES_NUM = 5
 
 # And then we import
 import p4runtime_lib.bmv2
@@ -108,21 +104,20 @@ def readTableRules_lfu(p4info_helper, sw, table_name):
             entry = entity.table_entry
             full_table_name = p4info_helper.get_tables_name(entry.table_id)
             table_name = full_table_name.split(".")
-            if table_name[2] == "lfu":
-                param_port = 0
-                param_ip = 0
-                downstream = table_name[1]
-                name = table_name[2]
-                key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
-                action = entry.action.action
-                action_name = p4info_helper.get_actions_name(action.action_id)
-                for p in action.params:
-                    param_name = p4info_helper.get_action_param_name(action_name, p.param_id)
-                    if(param_name == "dst_ip"):
-                        param_ip = socket.inet_ntoa(p.value)
-                    else:
-                        param_port = struct.unpack('>H', p.value)[0]
-                all_rules.append([downstream,name,key_ip,param_ip,param_port,0])
+            param_port = 0
+            param_ip = 0
+            downstream = table_name[1]
+            name = table_name[2]
+            key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
+            action = entry.action.action
+            action_name = p4info_helper.get_actions_name(action.action_id)
+            for p in action.params:
+                param_name = p4info_helper.get_action_param_name(action_name, p.param_id)
+                if(param_name == "dst_ip"):
+                    param_ip = socket.inet_ntoa(p.value)
+                else:
+                    param_port = struct.unpack('>H', p.value)[0]
+            all_rules.append([downstream,name,key_ip,param_ip,param_port,0])
     return all_rules
 
 def readTableRules_flowCache(p4info_helper, sw, table_name):
@@ -151,8 +146,8 @@ def readTableRules_flowCache(p4info_helper, sw, table_name):
                         param_port = struct.unpack('>H', p.value)[0]
                 all_rules.append([downstream,name,key_ip,param_ip,param_port,0])
  
-    if(len(all_rules) > random_rules_num):
-        random_rules = rnd.sample(all_rules, k = random_rules_num)
+    if(len(all_rules) > RANDOM_RULES_NUM):
+        random_rules = rnd.sample(all_rules, k = RANDOM_RULES_NUM)
     else:
         random_rules = all_rules
     for rule in random_rules:
@@ -177,13 +172,6 @@ def printGrpcError(e):
     traceback = sys.exc_info()[2]
     print "[%s:%s]" % (traceback.tb_frame.f_code.co_filename, traceback.tb_lineno)
 
-
-def sniff_and_enqueue():
-    while True:
-        packets = sniff(iface="s1-eth3",filter="src host 192.168.0.100",count=1)
-        #print("Sniffed on interface h5-eth0")
-        q.put(packets[0])
-
 def takeCounter(elem):
     return elem[5]
 
@@ -202,22 +190,9 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
         # 傳送 master arbitration update message 來建立，使得這個 controller 成為
         # master (required by P4Runtime before performing any other write operation)
         s1.MasterArbitrationUpdate(role = CPU_ROLE_ID)
-        #sleep(10)
-
-        count = 0
-        try:
-            count+=1
-            #thread.start_new_thread(sniff_and_enqueue,())
-            #thread.start_new_thread(readTableRules_thread,(p4info_helper,s1,s2)) 
-            #thread.start_new_thread(plot_statistics,(p4info_helper,s1))
-
-        except:
-            print "Error: unable to start thread"
 
         while True:
-            
-            sleep(1)
-
+            sleep(0.5)
             new_flow_cache_rules = readTableRules_flowCache(p4info_helper,s1,"basic_tutorial_ingress.downstream1.flow_cache")
             old_lfu_rules = readTableRules_lfu(p4info_helper,s1,"basic_tutorial_ingress.downstream1.lfu")
 
@@ -231,26 +206,6 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
                         delete_table_entry_lfu(p4info_helper,"downstream1", s1, str(old_lfu[2]),CPU_ROLE_ID)
                 else:
                     insert_table_entry_lfu(p4info_helper,"downstream1", s1, str(new_lfu[2]),CPU_ROLE_ID)
-
-            """
-            if not q.empty():
-                pkt = q.get()
-
-                print("Recdived Packet is:")
-                pkt.show2()
-                new_rules = readTableRules(p4info_helper,s1)
-                rules_string = ""
-                for rule in new_rules:
-                    rules_string = rules_string + str(rule) + ";"
-                new_pkt = Ether(src=src_mac, dst=dst_mac)
-                new_pkt = new_pkt / IP(dst=controller_ip) / UDP(dport=dst_port, sport=src_port)
-                new_pkt = new_pkt / rules_string
-                #print(new_rules)
-                #print(rules_string)
-                #print("Sent Packet is:")
-                #new_pkt.show2()
-                sendp(new_pkt, iface="s1-eth3", verbose=False)
-            """
 
         sys.stdout.flush()
 
@@ -266,7 +221,7 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
 
 
 if __name__ == '__main__':
-    """ Simple P4 Controller
+    """ Simple P4 Embedded Controller
         Args:
             p4info:     指定 P4 Program 編譯產生的 p4info (PI 制定之格式、給予 controller 讀取)
             bmv2-json:  指定 P4 Program 編譯產生的 json 格式，依據 backend 不同，而有不同的檔案格式
@@ -293,14 +248,5 @@ if __name__ == '__main__':
         parser.print_help()
         print "\nBMv2 JSON file not found: %s\nPlease compile the target P4 program first." % args.bmv2_json
         parser.exit(1)
-    q = Queue()
-    flow_counter = {}
-    p4_counters = {}
-    table_rules = {}    #key = switch, value = [downstream,flow_table,match_ip,param_ip,param_port,counter]
-    global_history = {}
-    recent_history = {}
-    threshold = 3
-    cache_size = 20
-    random_rules_num = 5
     # Pass argument into main function
     main(args.p4info, args.bmv2_json, args.my_topology)

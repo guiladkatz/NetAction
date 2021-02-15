@@ -12,14 +12,13 @@ import numpy as np
 from scapy.all import *
 
 
+THRESHOLD = 3
+CACHE_SIZE = 20
 
 # set our lib path
 sys.path.append(
     os.path.join(os.path.dirname(os.path.abspath(__file__)),
         '../../../utils/'))
-
-SWITCH_TO_HOST_PORT = 1
-SWITCH_TO_SWITCH_PORT = 2
 
 # And then we import
 import p4runtime_lib.bmv2
@@ -175,21 +174,20 @@ def get_k_lfu_rules(p4info_helper, sw, table_name):
             entry = entity.table_entry
             full_table_name = p4info_helper.get_tables_name(entry.table_id)
             table_name = full_table_name.split(".")
-            if table_name[2] == "lfu":
-                param_port = 0
-                param_ip = 0
-                downstream = table_name[1]
-                name = table_name[2]
-                key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
-                action = entry.action.action
-                action_name = p4info_helper.get_actions_name(action.action_id)
-                for p in action.params:
-                    param_name = p4info_helper.get_action_param_name(action_name, p.param_id)
-                    if(param_name == "dst_ip"):
-                        param_ip = socket.inet_ntoa(p.value)
-                    else:
-                        param_port = struct.unpack('>H', p.value)[0]
-                all_rules.append([downstream,name,key_ip,param_ip,param_port,0])
+            param_port = 0
+            param_ip = 0
+            downstream = table_name[1]
+            name = table_name[2]
+            key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
+            action = entry.action.action
+            action_name = p4info_helper.get_actions_name(action.action_id)
+            for p in action.params:
+                param_name = p4info_helper.get_action_param_name(action_name, p.param_id)
+                if(param_name == "dst_ip"):
+                    param_ip = socket.inet_ntoa(p.value)
+                else:
+                    param_port = struct.unpack('>H', p.value)[0]
+            all_rules.append([downstream,name,key_ip,param_ip,param_port,0])
     return all_rules
 
 
@@ -345,6 +343,7 @@ def import_topology(topo_file):
     print(links)
 
     count=0
+
 def plot_statistics(p4info_helper,sw1):
     sleep(600)
     readTableRules(p4info_helper,sw1)
@@ -406,9 +405,9 @@ def cache_handler(p4info_helper,sw1,pkt_dst_ip):
             recent_history[pkt_dst_ip] = 1
         else:
             recent_history[pkt_dst_ip] += 1
-            if recent_history[pkt_dst_ip] >= threshold:
+            if recent_history[pkt_dst_ip] >= THRESHOLD:
                 rules_in_cache = get_cache_size()
-                if(rules_in_cache < cache_size):
+                if(rules_in_cache < CACHE_SIZE):
                     insert_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, str(pkt_dst_ip))
                     global_history[pkt_dst_ip][1] = True
                     global_history[pkt_dst_ip][3] = time.time()
@@ -418,16 +417,74 @@ def cache_handler(p4info_helper,sw1,pkt_dst_ip):
                     #readTableRules(p4info_helper,sw1)
                     #rules = table_rules[sw1.name]
                     #rules.sort(key=takeCounter)
-                    print(rules)
                     lfu = rules[0]
-                    global_history[lfu[2]][0] += lfu[5]
-                    global_history[lfu[2]][1] = False
-                    global_history[lfu[2]][4] += time.time() - global_history[lfu[2]][3]
-                    del recent_history[lfu[2]]
-                    delete_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, lfu[2])                   
+                    if(global_history[lfu[2]][1] == True):
+                        global_history[lfu[2]][0] += lfu[5]
+                        global_history[lfu[2]][1] = False
+                        global_history[lfu[2]][4] += time.time() - global_history[lfu[2]][3]
+                        del recent_history[lfu[2]]
+                        delete_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, lfu[2]) 
+
                     insert_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, str(pkt_dst_ip))
                     global_history[pkt_dst_ip][1] = True
                     global_history[pkt_dst_ip][3] = time.time()
+
+def insert_preliminary_rules(p4info_helper,s1,s2):
+
+    ##### Insert flow rules for s1 #####
+
+
+    #Ingress Upstream Rules - Switch 1
+
+    insert_table_entry_t_vxlan_term(p4info_helper, sw=s1, dst_eth_addr="00:00:00:00:01:01")
+    insert_table_entry_t_vxlan_term(p4info_helper, sw=s1, dst_eth_addr="00:00:00:00:01:02")
+    insert_table_entry_t_forward_l2(p4info_helper, sw=s1, dst_eth_addr="00:00:00:00:01:01", port="\000\001") 
+    insert_table_entry_t_forward_l2(p4info_helper, sw=s1, dst_eth_addr="00:00:00:00:01:02", port="\000\002")
+    insert_table_entry_t_forward_underlay(p4info_helper, sw=s1, ip_dstAddr="192.168.0.100", port="\000\003") 
+    insert_table_entry_t_forward_underlay(p4info_helper, sw=s1, ip_dstAddr="192.168.0.2", port="\000\004") 
+
+    #Ingress Downstream rules - Switch 1 - Host 1
+
+    insert_table_entry_t_controller(p4info_helper,"downstream1", sw=s1, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
+    insert_table_entry_t_vtep(p4info_helper,"downstream1",sw=s1, src_eth_addr="00:00:00:00:01:01", vtep_ip="192.168.0.1")
+    insert_table_entry_t_vxlan_segment(p4info_helper,"downstream1", sw=s1, ingress_port="\000\001", vni=0x100000)
+
+    #Ingress Downstream rules - Switch 1 - Host 2
+
+    insert_table_entry_t_controller(p4info_helper,"downstream2", sw=s1, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
+    insert_table_entry_t_vtep(p4info_helper,"downstream2",sw=s1, src_eth_addr="00:00:00:00:01:02", vtep_ip="192.168.0.1")
+    insert_table_entry_t_vxlan_segment(p4info_helper,"downstream2", sw=s1, ingress_port="\000\002", vni=0x100000)
+    
+    #Egress Downstream rules - Switch 1
+    insert_table_entry_t_send_frame(p4info_helper, sw=s1, dst_ip_addr="192.168.0.2", smac="00:aa:00:01:00:02", dmac="00:aa:00:02:00:03")
+    insert_table_entry_t_send_frame(p4info_helper, sw=s1, dst_ip_addr="192.168.0.100", smac="00:00:00:00:01:05", dmac="00:00:00:00:01:05")
+
+
+
+    ##### Insert flow rules for s2 #####
+
+    #Ingress Upstream Rules - Switch 2
+
+    insert_table_entry_t_vxlan_term(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:03")
+    insert_table_entry_t_vxlan_term(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:04")
+    insert_table_entry_t_forward_l2(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:03", port="\000\001") 
+    insert_table_entry_t_forward_l2(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:04", port="\000\002")
+    insert_table_entry_t_forward_underlay(p4info_helper, sw=s2, ip_dstAddr="192.168.0.100", port="\000\003") 
+    insert_table_entry_t_forward_underlay(p4info_helper, sw=s2, ip_dstAddr="192.168.0.1", port="\000\003") 
+
+    #Ingress Downstream rules - Switch 2 - Host 3 - VNI
+    insert_table_entry_t_controller(p4info_helper,"downstream1", sw=s2, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
+    insert_table_entry_t_vtep(p4info_helper,"downstream1",sw=s2, src_eth_addr="00:00:00:00:02:03", vtep_ip="192.168.0.2")
+    insert_table_entry_t_vxlan_segment(p4info_helper,"downstream1", sw=s2, ingress_port="\000\001", vni=0x100000)
+
+    #Ingress Downstream rules - Switch 2 - Host 4 - VNI
+    insert_table_entry_t_controller(p4info_helper,"downstream2", sw=s2, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
+    insert_table_entry_t_vtep(p4info_helper,"downstream2",sw=s2, src_eth_addr="00:00:00:00:02:04", vtep_ip="192.168.0.2")
+    insert_table_entry_t_vxlan_segment(p4info_helper,"downstream2", sw=s2, ingress_port="\000\002", vni=0x200000)
+    
+    #Egress Downstream rules - Switch 2
+    insert_table_entry_t_send_frame(p4info_helper, sw=s2, dst_ip_addr="192.168.0.1", smac="00:aa:00:02:00:03", dmac="00:aa:00:01:00:02")
+    insert_table_entry_t_send_frame(p4info_helper, sw=s2, dst_ip_addr="192.168.0.100", smac="00:aa:00:02:00:03", dmac="00:aa:00:01:00:02")
 
 
 def main(p4info_file_path, bmv2_file_path, my_topology):
@@ -457,16 +514,6 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
         # master (required by P4Runtime before performing any other write operation)
         s1.MasterArbitrationUpdate()
         s2.MasterArbitrationUpdate()
-        """
-        count=1
-        while True:
-            sleep(2)
-            print(count)
-            s1.MasterArbitrationUpdate(election_low = count)
-            count+=1
-            if (count == 4):
-                count = 1
-        """
 
                 # 安裝目標 P4 程式到 switch 上
         s1.SetForwardingPipelineConfig(p4info=p4info_helper.p4info,
@@ -487,11 +534,6 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
             })
         #s1.WritePRE(mc_group = mc_group_entry)
         print "Installed mgrp on s1."
-        count=0
-        h1 = "00:00:00:00:01:01"
-        h2 = "00:00:00:00:01:02"
-        h3 = "00:00:00:00:02:03"
-        h4 = "00:00:00:00:02:04"
         oracle  =  {"00:00:00:00:01:01":[s1,"10.0.1.1","\000\001",0x100000,1],#(MAC: [Switch,IP,Port,VNI,downstream_id])
                     "00:00:00:00:01:02":[s1,"10.0.1.2","\000\002",0x100000,2],
                     "00:00:00:00:02:03":[s2,"10.0.2.3","\000\001",0x100000,1],
@@ -499,78 +541,8 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
                     }
         table_rules[s1.name] = []
         table_rules[s2.name] = []
+        insert_preliminary_rules(p4info_helper,s1,s2)
 
-
-        ##### Insert flow rules for s1 #####
-
-
-        #Ingress Upstream Rules - Switch 1
-
-        insert_table_entry_t_vxlan_term(p4info_helper, sw=s1, dst_eth_addr="00:00:00:00:01:01")
-        insert_table_entry_t_vxlan_term(p4info_helper, sw=s1, dst_eth_addr="00:00:00:00:01:02")
-        insert_table_entry_t_forward_l2(p4info_helper, sw=s1, dst_eth_addr="00:00:00:00:01:01", port="\000\001") 
-        insert_table_entry_t_forward_l2(p4info_helper, sw=s1, dst_eth_addr="00:00:00:00:01:02", port="\000\002")
-        insert_table_entry_t_forward_underlay(p4info_helper, sw=s1, ip_dstAddr="192.168.0.100", port="\000\003") 
-        insert_table_entry_t_forward_underlay(p4info_helper, sw=s1, ip_dstAddr="192.168.0.2", port="\000\004") 
-
-        #Ingress Downstream rules - Switch 1 - Host 1
-
-        insert_table_entry_t_controller(p4info_helper,"downstream1", sw=s1, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
-        insert_table_entry_t_vtep(p4info_helper,"downstream1",sw=s1, src_eth_addr="00:00:00:00:01:01", vtep_ip="192.168.0.1")
-        insert_table_entry_t_vxlan_segment(p4info_helper,"downstream1", sw=s1, ingress_port="\000\001", vni=0x100000)
-
-        #insert_table_entry_flow_cache(p4info_helper,"downstream1", sw=s1, dst_ip_addr="10.0.1.2", outter_ip="0.0.0.0", port="\000\002")
-        #insert_table_entry_flow_cache(p4info_helper,"downstream1", sw=s1, dst_ip_addr="10.0.2.3", outter_ip="192.168.0.2", port="\000\004")
-        #insert_table_entry_flow_cache(p4info_helper,"downstream1", sw=s1, dst_ip_addr="10.0.2.4", outter_ip="192.168.0.2", port="\000\004")
-
-        #Ingress Downstream rules - Switch 1 - Host 2
-
-        insert_table_entry_t_controller(p4info_helper,"downstream2", sw=s1, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
-        insert_table_entry_t_vtep(p4info_helper,"downstream2",sw=s1, src_eth_addr="00:00:00:00:01:02", vtep_ip="192.168.0.1")
-        insert_table_entry_t_vxlan_segment(p4info_helper,"downstream2", sw=s1, ingress_port="\000\002", vni=0x100000)
-        
-        #insert_table_entry_flow_cache(p4info_helper,"downstream2", sw=s1, dst_ip_addr="10.0.1.1", outter_ip="0.0.0.0", port="\000\001")
-        #insert_table_entry_flow_cache(p4info_helper,"downstream2", sw=s1, dst_ip_addr="10.0.2.3", outter_ip="192.168.0.2", port="\000\004")        
-        #insert_table_entry_flow_cache(p4info_helper,"downstream2", sw=s1, dst_ip_addr="10.0.2.4", outter_ip="192.168.0.2", port="\000\004")
-
-        #Egress Downstream rules - Switch 1
-        insert_table_entry_t_send_frame(p4info_helper, sw=s1, dst_ip_addr="192.168.0.2", smac="00:aa:00:01:00:02", dmac="00:aa:00:02:00:03")
-        insert_table_entry_t_send_frame(p4info_helper, sw=s1, dst_ip_addr="192.168.0.100", smac="00:00:00:00:01:05", dmac="00:00:00:00:01:05")
-
-
-
-        ##### Insert flow rules for s2 #####
-
-        #Ingress Upstream Rules - Switch 2
-
-        insert_table_entry_t_vxlan_term(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:03")
-        insert_table_entry_t_vxlan_term(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:04")
-        insert_table_entry_t_forward_l2(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:03", port="\000\001") 
-        insert_table_entry_t_forward_l2(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:04", port="\000\002")
-        insert_table_entry_t_forward_underlay(p4info_helper, sw=s2, ip_dstAddr="192.168.0.100", port="\000\003") 
-        insert_table_entry_t_forward_underlay(p4info_helper, sw=s2, ip_dstAddr="192.168.0.1", port="\000\003") 
-
-        #Ingress Downstream rules - Switch 2 - Host 3 - VNI
-        insert_table_entry_t_controller(p4info_helper,"downstream1", sw=s2, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
-        insert_table_entry_t_vtep(p4info_helper,"downstream1",sw=s2, src_eth_addr="00:00:00:00:02:03", vtep_ip="192.168.0.2")
-        insert_table_entry_t_vxlan_segment(p4info_helper,"downstream1", sw=s2, ingress_port="\000\001", vni=0x100000)
-
-        #insert_table_entry_flow_cache(p4info_helper,"downstream1", sw=s2, dst_ip_addr="10.0.2.4", outter_ip="0.0.0.0", port="\000\002")
-        #insert_table_entry_flow_cache(p4info_helper,"downstream1", sw=s2, dst_ip_addr="10.0.1.1", outter_ip="192.168.0.1", port="\000\003")
-        #insert_table_entry_flow_cache(p4info_helper,"downstream1", sw=s2, dst_ip_addr="10.0.1.2", outter_ip="192.168.0.1", port="\000\003")
-        
-        #Ingress Downstream rules - Switch 2 - Host 4 - VNI
-        insert_table_entry_t_controller(p4info_helper,"downstream2", sw=s2, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
-        insert_table_entry_t_vtep(p4info_helper,"downstream2",sw=s2, src_eth_addr="00:00:00:00:02:04", vtep_ip="192.168.0.2")
-        insert_table_entry_t_vxlan_segment(p4info_helper,"downstream2", sw=s2, ingress_port="\000\002", vni=0x200000)
-        
-        #insert_table_entry_flow_cache(p4info_helper,"downstream2", sw=s2, dst_ip_addr="10.0.1.1", outter_ip="192.168.0.1", port="\000\003")
-        #insert_table_entry_flow_cache(p4info_helper,"downstream2", sw=s2, dst_ip_addr="10.0.1.2", outter_ip="192.168.0.1", port="\000\003")
-        #insert_table_entry_flow_cache(p4info_helper,"downstream2", sw=s2, dst_ip_addr="10.0.2.3", outter_ip="0.0.0.0", port="\000\001")
-
-        #Egress Downstream rules - Switch 2
-        insert_table_entry_t_send_frame(p4info_helper, sw=s2, dst_ip_addr="192.168.0.1", smac="00:aa:00:02:00:03", dmac="00:aa:00:01:00:02")
-        insert_table_entry_t_send_frame(p4info_helper, sw=s2, dst_ip_addr="192.168.0.100", smac="00:aa:00:02:00:03", dmac="00:aa:00:01:00:02")
 
         try:
             thread.start_new_thread(sniff_and_enqueue,())
@@ -583,7 +555,6 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
         while True:
             if not q.empty():
                 pkt = q.get()
-                #pkt.show2()
                 if(pkt.haslayer(IP)):
                     src_ip = pkt.getlayer(IP).src
                     dst_ip = pkt.getlayer(IP).dst
@@ -647,11 +618,8 @@ if __name__ == '__main__':
         parser.exit(1)
     q = Queue()
     flow_counter = {}
-    p4_counters = {}
     table_rules = {}    #key = switch, value = [downstream,flow_table,match_ip,param_ip,param_port,counter]
     global_history = {}
     recent_history = {}
-    threshold = 3
-    cache_size = 20
     # Pass argument into main function
     main(args.p4info, args.bmv2_json, args.my_topology)

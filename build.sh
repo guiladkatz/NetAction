@@ -9,5 +9,5 @@ make
 #       - "simple_switch_grpc"
 sudo python ../../../utils/run_exercise.py \
     --topo topology.json \
-    --switch_json basic_tutorial_switch.json \
+    --switch_json net_action.json \
     --behavioral-exe simple_switch_grpc

@@ -2330,7 +2330,7 @@
       "name" : "ingress",
       "id" : 0,
       "source_info" : {
-        "filename" : "basic_tutorial_switch.p4",
+        "filename" : "net_action.p4",
         "line" : 20,
         "column" : 8,
         "source_fragment" : "basic_tutorial_ingress"
@@ -3067,7 +3067,7 @@
           "name" : "node_2",
           "id" : 0,
           "source_info" : {
-            "filename" : "basic_tutorial_switch.p4",
+            "filename" : "net_action.p4",
             "line" : 33,
             "column" : 14,
             "source_fragment" : "standard_metadata.ingress_port == 1"
@@ -3169,7 +3169,7 @@
           "name" : "node_14",
           "id" : 4,
           "source_info" : {
-            "filename" : "basic_tutorial_switch.p4",
+            "filename" : "net_action.p4",
             "line" : 36,
             "column" : 19,
             "source_fragment" : "standard_metadata.ingress_port == 2"
@@ -3343,7 +3343,7 @@
       "name" : "egress",
       "id" : 1,
       "source_info" : {
-        "filename" : "basic_tutorial_switch.p4",
+        "filename" : "net_action.p4",
         "line" : 52,
         "column" : 8,
         "source_fragment" : "basic_tutorial_egress"
@@ -3423,7 +3423,7 @@
           "name" : "node_38",
           "id" : 11,
           "source_info" : {
-            "filename" : "basic_tutorial_switch.p4",
+            "filename" : "net_action.p4",
             "line" : 60,
             "column" : 12,
             "source_fragment" : "standard_metadata.ingress_port == 1 || standard_metadata.ingress_port == 2"
@@ -3570,7 +3570,7 @@
       ["standard_metadata", "recirculate_flag"]
     ]
   ],
-  "program" : "basic_tutorial_switch.p4",
+  "program" : "net_action.p4",
   "__meta__" : {
     "version" : [2, 18],
     "compiler" : "https://github.com/p4lang/p4c"
