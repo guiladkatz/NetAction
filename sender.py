@@ -22,12 +22,12 @@ def fast_flow(time):
     pkt = pkt / IP(dst=dst_ip) / UDP(dport=dst_port, sport=src_port)
     while count < time:
         count += 1
-        sleep(0.3)
+        sleep(0.05)
         new_dst_ip = dst_ip.split(".")
         #new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
         #if(count == 25):
         #    count = 0
-        new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,10))
+        new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,20))
         new_dst_ip = ".".join(new_dst_ip)
         pkt[IP].dst = new_dst_ip
         #pkt.show2()
@@ -44,7 +44,7 @@ def med_flow(time):
     pkt = Ether(src=src_mac, dst=dst_mac)
     pkt = pkt / IP(dst=dst_ip) / UDP(dport=dst_port, sport=src_port)
     while count < time:
-        sleep(0.8)
+        sleep(0.1)
         count += 1
         new_dst_ip = dst_ip.split(".")
         #new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
@@ -67,7 +67,7 @@ def slow_flow(time):
     pkt = Ether(src=src_mac, dst=dst_mac)
     pkt = pkt / IP(dst=dst_ip) / UDP(dport=dst_port, sport=src_port)
     while count < time:
-        sleep(1.2)
+        sleep(0.4)
         count += 1
         new_dst_ip = dst_ip.split(".")
         #new_dst_ip[3] = str(int(new_dst_ip[3]) + count)

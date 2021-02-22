@@ -1,10 +1,10 @@
 
-[2021-02-15 17:07:12.069] /p4.v1.P4Runtime/SetForwardingPipelineConfig
+[2021-02-18 23:35:28.104] /p4.v1.P4Runtime/SetForwardingPipelineConfig
 ---
 Message too long (119396 bytes)! Skipping log...
 ---
 
-[2021-02-15 17:07:12.228] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.242] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -32,7 +32,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.239] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.250] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -60,7 +60,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.246] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.257] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -92,7 +92,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.253] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.262] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -124,7 +124,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.259] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.268] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -156,7 +156,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.264] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.272] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -188,7 +188,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.271] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.276] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -224,7 +224,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.278] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.281] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -256,7 +256,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.284] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.295] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -288,7 +288,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.290] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.309] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -324,7 +324,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.301] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.347] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -356,7 +356,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.310] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.378] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -388,7 +388,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.317] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.385] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
@@ -424,7 +424,7 @@ updates {
 }
 ---
 
-[2021-02-15 17:07:12.325] /p4.v1.P4Runtime/Write
+[2021-02-18 23:35:28.390] /p4.v1.P4Runtime/Write
 ---
 device_id: 1
 role_id: 2
