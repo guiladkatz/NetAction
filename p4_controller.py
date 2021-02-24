@@ -4,6 +4,7 @@ import argparse, grpc, os, sys, json
 import time
 from time import sleep
 import thread
+from threading import Lock
 import Queue
 import socket
 import struct
@@ -484,12 +485,14 @@ def insert_preliminary_rules(p4info_helper,s1,s2):
     insert_table_entry_t_send_frame(p4info_helper, sw=s2, dst_ip_addr="192.168.0.1", smac="00:aa:00:02:00:03", dmac="00:aa:00:01:00:02")
     insert_table_entry_t_send_frame(p4info_helper, sw=s2, dst_ip_addr="192.168.0.100", smac="00:aa:00:02:00:03", dmac="00:aa:00:01:00:02")
 
-def rnd_poll_counter(p4info_helper,s1,s2):
+def rnd_poll_counter(p4info_helper,sw):
     while True:
-        sleep(0.01)
+        #sleep(0.01)
         if(len(rules_in_cache) > 1):
+            mutex.acquire()
             rnd_rule_index = random.randint(0,len(rules_in_cache)-1)
             rnd_rule = rules_in_cache[rnd_rule_index]
+            mutex.release()
             ###### Changed to 'downstream1' for simplicity - might need to be made more general ######
             table_name = "basic_tutorial_ingress.downstream1.flow_cache"
             table_entry = p4info_helper.buildTableEntry(
@@ -497,14 +500,16 @@ def rnd_poll_counter(p4info_helper,s1,s2):
                 match_fields = {
                     "hdr.ipv4.dstAddr": (rnd_rule[0],32)
                 })
-            for response in s1.ReadDirectCounter(table_entry = table_entry, table_id = p4info_helper.get_tables_id(table_name)):
+            for response in sw.ReadDirectCounter(table_entry = table_entry, table_id = p4info_helper.get_tables_id(table_name)):
                 for entity in response.entities:
                     direct_counter_entry = entity.direct_counter_entry
                 counter_value = int("%d"%( direct_counter_entry.data.packet_count))
+                mutex.acquire()
                 for rule in rules_in_cache:
                     if(rule[0] == rnd_rule[0]):
                         if(counter_value > rule[1]):
                             rule[1] = counter_value
+                mutex.release()
                 #rule[5] = int("%d"%( direct_counter_entry.data.packet_count))
 
 def main(p4info_file_path, bmv2_file_path, my_topology):
@@ -529,31 +534,47 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
             address='192.168.0.2:50052',
             device_id=1,
             proto_dump_file='logs/s2-p4runtime-requests.txt')
+        s1_2 = p4runtime_lib.bmv2.Bmv2SwitchConnection(
+            name='s1_2',
+            address='192.168.0.5:50051',
+            device_id=0,
+            proto_dump_file='logs/s1_1-p4runtime-requests.txt')
+        s1_3 = p4runtime_lib.bmv2.Bmv2SwitchConnection(
+            name='s1_3',
+            address='192.168.0.5:50051',
+            device_id=0,
+            proto_dump_file='logs/s1_1-p4runtime-requests.txt')
+        s1_4 = p4runtime_lib.bmv2.Bmv2SwitchConnection(
+            name='s1_4',
+            address='192.168.0.5:50051',
+            device_id=0,
+            proto_dump_file='logs/s1_1-p4runtime-requests.txt')
+        s1_5 = p4runtime_lib.bmv2.Bmv2SwitchConnection(
+            name='s1_5',
+            address='192.168.0.5:50051',
+            device_id=0,
+            proto_dump_file='logs/s1_1-p4runtime-requests.txt')
+
 
         # 傳送 master arbitration update message 來建立，使得這個 controller 成為
         # master (required by P4Runtime before performing any other write operation)
         s1.MasterArbitrationUpdate()
         s2.MasterArbitrationUpdate()
+        s1_2.MasterArbitrationUpdate(role = 3)
+        s1_3.MasterArbitrationUpdate(role = 4)
+        s1_4.MasterArbitrationUpdate(role = 5)
+        s1_5.MasterArbitrationUpdate(role = 6)
+
+
 
                 # 安裝目標 P4 程式到 switch 上
         s1.SetForwardingPipelineConfig(p4info=p4info_helper.p4info,
                                         bmv2_json_file_path=bmv2_file_path)
         print "Installed P4 Program using SetForardingPipelineConfig on s1"
-
         s2.SetForwardingPipelineConfig(p4info=p4info_helper.p4info,
                                         bmv2_json_file_path=bmv2_file_path)
-        print "Installed P4 Program using SetForardingPipelineConfig on s2"
+        print "Installed P4 Program using SetForardingPipelineConfig on s1"
 
-
-        mc_group_entry = p4info_helper.buildMCEntry(
-            mc_group_id = 1,
-            replicas = {
-                1:1,
-                2:2,
-                3:3
-            })
-        #s1.WritePRE(mc_group = mc_group_entry)
-        print "Installed mgrp on s1."
         oracle  =  {"00:00:00:00:01:01":[s1,"10.0.1.1","\000\001",0x100000,1],#(MAC: [Switch,IP,Port,VNI,downstream_id])
                     "00:00:00:00:01:02":[s1,"10.0.1.2","\000\002",0x100000,2],
                     "00:00:00:00:02:03":[s2,"10.0.2.3","\000\001",0x100000,1],
@@ -566,7 +587,12 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
 
         try:
             thread.start_new_thread(sniff_and_enqueue,())
-            thread.start_new_thread(rnd_poll_counter,(p4info_helper,s1,s2))
+            thread.start_new_thread(rnd_poll_counter,(p4info_helper,s1))
+            #thread.start_new_thread(rnd_poll_counter,(p4info_helper,s1_2))
+            #thread.start_new_thread(rnd_poll_counter,(p4info_helper,s1_3))
+            #thread.start_new_thread(rnd_poll_counter,(p4info_helper,s1_4))
+            #thread.start_new_thread(rnd_poll_counter,(p4info_helper,s1_5))
+
             #thread.start_new_thread(get_k_lfu_rules,())
             #thread.start_new_thread(readTableRules_thread,(p4info_helper,s1,s2))     
             #thread.start_new_thread(plot_statistics,(p4info_helper,s1))
@@ -645,5 +671,6 @@ if __name__ == '__main__':
     global_history = {}
     recent_history = {}
     rules_in_cache = []
+    mutex = Lock()
     # Pass argument into main function
     main(args.p4info, args.bmv2_json, args.my_topology)
