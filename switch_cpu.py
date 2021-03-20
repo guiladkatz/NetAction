@@ -192,6 +192,7 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
         s1.MasterArbitrationUpdate(role = CPU_ROLE_ID)
 
         while True:
+
             sleep(0.5)
             new_flow_cache_rules = readTableRules_flowCache(p4info_helper,s1,"basic_tutorial_ingress.downstream1.flow_cache")
             old_lfu_rules = readTableRules_lfu(p4info_helper,s1,"basic_tutorial_ingress.downstream1.lfu")

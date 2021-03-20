@@ -11,9 +11,12 @@ import struct
 import matplotlib.pyplot as plt
 import numpy as np
 from scapy.all import *
+import csv
 
 
-THRESHOLD = 3
+
+
+THRESHOLD = 5
 CACHE_SIZE = 20
 
 # set our lib path
@@ -168,6 +171,7 @@ def delete_table_entry_flow_cache_drop(p4info_helper,downstream_id, sw, dst_ip_a
     print "Deleted flow_cache entry via P4Runtime."
 
 def get_k_lfu_rules(p4info_helper, sw, table_name):
+
     table_id = p4info_helper.get_tables_id(table_name)
     all_rules = []
     for response in sw.ReadTableEntries(table_id=table_id):
@@ -191,46 +195,6 @@ def get_k_lfu_rules(p4info_helper, sw, table_name):
             all_rules.append([downstream,name,key_ip,param_ip,param_port,0])
     return all_rules
 
-
-    """
-    rules = []
-    request = "Give me the k LFU Rules"
-    src_mac ='00:00:00:00:01:05'
-    dst_mac ='00:00:00:00:01:05'
-    controller_ip = "192.168.0.100"
-    switch_ip = '192.168.0.5'
-    src_port = 50100
-    dst_port = 1234
-    send_pkt = Ether(src=src_mac, dst=dst_mac)
-    send_pkt = send_pkt / IP(dst=switch_ip) / TCP(dport=dst_port, sport=src_port)
-    send_pkt = send_pkt / request
-    sendp(send_pkt, iface="h5-eth0", verbose=False)
-
-    flag = False
-    while(flag == False):
-        if not q.empty():
-            rec_pkt = q.get()
-            if(rec_pkt.haslayer(UDP)):
-                if(rec_pkt.getlayer(UDP).dport == 50100):
-                    flag = True
-                    print("Received packet in get k lfu rules is:")
-                    pkt_rules = rec_pkt.payload.payload.payload
-                    print("The type of the payload is:")
-                    print(type(pkt_rules))
-                    print(pkt_rules)
-                    if(len(pkt_rules) > 0):
-                        pkt_rules = str(pkt_rules)
-                        rules = pkt_rules.split(";")
-                    print("The rules are:")
-                    print(rules)
-                    table_rules[sw.name] = rules
-                else:
-                    q.put(rec_pkt)
-            else:
-                 q.put(rec_pkt)
-    """
-
-
 def readTableRules(p4info_helper, sw, table_name):  
     #Reads the table entries from all tables on the switch.
     #TODO - Give the table id of the cache to the ReadTableEntries() function to read only from the cache
@@ -239,33 +203,30 @@ def readTableRules(p4info_helper, sw, table_name):
     for response in sw.ReadTableEntries(table_id=table_id):
         for entity in response.entities:
             entry = entity.table_entry
-            full_table_name = p4info_helper.get_tables_name(entry.table_id)
-            table_name = full_table_name.split(".")
-            if table_name[2] == "flow_cache":
-                param_port = 0
-                param_ip = 0
-                downstream = table_name[1]
-                name = table_name[2]
-                key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
-                action = entry.action.action
-                action_name = p4info_helper.get_actions_name(action.action_id)
-                for p in action.params:
-                    param_name = p4info_helper.get_action_param_name(action_name, p.param_id)
-                    if(param_name == "dst_ip"):
-                        param_ip = socket.inet_ntoa(p.value)
-                    else:
-                        param_port = struct.unpack('>H', p.value)[0]
-                rules.append([downstream,name,key_ip,param_ip,param_port,0])
+            splitted_table_name = table_name.split(".")
+            param_port = 0
+            param_ip = 0
+            downstream = splitted_table_name[1]
+            name = splitted_table_name[2]
+            key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
+            action = entry.action.action
+            action_name = p4info_helper.get_actions_name(action.action_id)
+            for p in action.params:
+                param_name = p4info_helper.get_action_param_name(action_name, p.param_id)
+                if(param_name == "dst_ip"):
+                    param_ip = socket.inet_ntoa(p.value)
+                else:
+                    param_port = struct.unpack('>H', p.value)[0]
+            rules.append([downstream,name,key_ip,param_ip,param_port,0])
     #Reads the counters entries from all table entries on the cache.
     for rule in rules:
-        table_name = "basic_tutorial_ingress." + rule[0] + ".flow_cache"
         dst_ip_addr = rule[2]
         table_entry = p4info_helper.buildTableEntry(
-        table_name = table_name,
+        table_name = "basic_tutorial_ingress.downstream1.flow_cache",
         match_fields = {
             "hdr.ipv4.dstAddr": (dst_ip_addr,32)
         })
-        for response in sw.ReadDirectCounter(table_entry = table_entry, table_id = p4info_helper.get_tables_id(table_name)):
+        for response in sw.ReadDirectCounter(table_entry = table_entry, table_id = table_id):
             for entity in response.entities:
                 direct_counter_entry = entity.direct_counter_entry
                 #print "The switch is: %s: %d packets" % (sw.name, direct_counter_entry.data.packet_count)
@@ -279,7 +240,6 @@ def printGrpcError(e):
     # detail about sys.exc_info - https://docs.python.org/2/library/sys.html#sys.exc_info
     traceback = sys.exc_info()[2]
     print "[%s:%s]" % (traceback.tb_frame.f_code.co_filename, traceback.tb_lineno)
-
 
 def sniff_and_enqueue():
     while True:
@@ -346,8 +306,10 @@ def import_topology(topo_file):
     count=0
 
 def plot_statistics(p4info_helper,sw1):
-    sleep(600)
-    readTableRules(p4info_helper,sw1)
+    sleep(595)
+    stop_handler = True
+    sleep(5)
+    readTableRules(p4info_helper,sw1,"basic_tutorial_ingress.downstream1.flow_cache")
     rules = table_rules[sw1.name]
     flow_list = []
     rule_hits_list = []
@@ -371,6 +333,18 @@ def plot_statistics(p4info_helper,sw1):
     print(new_global_history_time_in_cache_sort)
     flow_index = list(range(len(cache_time_list)))
     print(flow_index)
+
+    with open('flow_stats.csv', 'w') as file:
+        writer = csv.writer(file)
+        writer.writerow(["Hits", "Is_in_cache", "Arrival_time", "Cache_insertion_time", "Overall_time_in_cache"])
+        writer.writerow(["After sorting by hit"])
+        for rule in new_global_history_hit_sort:
+            writer.writerow(rule)
+        writer.writerow(["After sorting by time in cache"])
+        for rule in new_global_history_time_in_cache_sort:
+            writer.writerow(rule)
+
+
     title1 ="Cache Performance"
 
     fig1, (ax1,ax2) = plt.subplots(1,2)
@@ -400,33 +374,46 @@ def cache_handler(p4info_helper,sw1,pkt_dst_ip):
         else:
             recent_history[pkt_dst_ip] += 1
             if recent_history[pkt_dst_ip] >= THRESHOLD:
-                if(len(rules_in_cache) < CACHE_SIZE):
-                    insert_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, str(pkt_dst_ip))
-                    rules_in_cache.append([pkt_dst_ip,0])
-                    global_history[pkt_dst_ip][1] = True
-                    global_history[pkt_dst_ip][3] = time.time()
-                else:
-                    rules_in_cache.sort(key=lambda x: x[1])
+                if(global_history[pkt_dst_ip][1] == False):
+                    if(len(rules_in_cache) < CACHE_SIZE):
+                        print("My IP is %s" % (pkt_dst_ip))
+                        print("IP is %s" % (pkt_dst_ip))
+                        insert_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, str(pkt_dst_ip))
+                        rules_in_cache.append([pkt_dst_ip,0])
+                        global_history[pkt_dst_ip][1] = True
+                        global_history[pkt_dst_ip][3] = time.time()
+                    else:
+                        print("Now IP is %s" % (pkt_dst_ip))
+                        rules_in_cache.sort(key=lambda x: x[1])
 
-                    #rules = get_k_lfu_rules(p4info_helper,sw1,"basic_tutorial_ingress.downstream1.lfu")
-                    #insert_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, str(pkt_dst_ip))
-                    #readTableRules(p4info_helper,sw1)
-                    #rules = table_rules[sw1.name]
-                    #rules.sort(key=takeCounter)
-                    #lfu = rules[0]
-                    lfu = rules_in_cache[0]
-                    global_history[lfu[0]][0] += lfu[1]
-                    global_history[lfu[0]][1] = False
+                        #rules = get_k_lfu_rules(p4info_helper,sw1,"basic_tutorial_ingress.downstream1.lfu")
+                        #insert_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, str(pkt_dst_ip))
+                        #readTableRules(p4info_helper,sw1)
+                        #rules = table_rules[sw1.name]
+                        #rules.sort(key=takeCounter)
+                        #lfu = rules[0]
+                        lfu = rules_in_cache[0]
+                        global_history[lfu[0]][0] += lfu[1]
+                        global_history[lfu[0]][1] = False
+                        for rule in rules_in_cache:
+                            if(rule[0] == lfu[0]):
+                                rules_in_cache.remove(rule)
+                        global_history[lfu[0]][4] += time.time() - global_history[lfu[0]][3]
+                        del recent_history[lfu[0]]
+                        print("TEST")
+                        delete_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, lfu[0]) 
+                        insert_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, str(pkt_dst_ip))
+                        global_history[pkt_dst_ip][1] = True
+                        rules_in_cache.append([pkt_dst_ip,0])
+                        global_history[pkt_dst_ip][3] = time.time()
+                # It is possible that a rule was already inserted, but packets that are supposed to hit that
+                # rule have been already forwarded to the controller. Therefore, increment their value in the cache by 1
+                else:
+                    #mutex.acquire()
                     for rule in rules_in_cache:
-                        if(rule[0] == lfu[0]):
-                            rules_in_cache.remove(rule)
-                    global_history[lfu[0]][4] += time.time() - global_history[lfu[0]][3]
-                    del recent_history[lfu[0]]
-                    delete_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, lfu[0]) 
-                    insert_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, str(pkt_dst_ip))
-                    global_history[pkt_dst_ip][1] = True
-                    rules_in_cache.append([pkt_dst_ip,0])
-                    global_history[pkt_dst_ip][3] = time.time()
+                        if(rule[0] == pkt_dst_ip):
+                            rule[1] += 1
+                    #mutex.release()
 
 def insert_preliminary_rules(p4info_helper,s1,s2):
 
@@ -447,13 +434,15 @@ def insert_preliminary_rules(p4info_helper,s1,s2):
     insert_table_entry_t_controller(p4info_helper,"downstream1", sw=s1, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
     insert_table_entry_t_vtep(p4info_helper,"downstream1",sw=s1, src_eth_addr="00:00:00:00:01:01", vtep_ip="192.168.0.1")
     insert_table_entry_t_vxlan_segment(p4info_helper,"downstream1", sw=s1, ingress_port="\000\001", vni=0x100000)
+    #insert_table_entry_flow_cache(p4info_helper,"downstream1", sw=s1, dst_ip_addr="10.0.1.2", outter_ip="0.0.0.0", port="\000\002")
 
     #Ingress Downstream rules - Switch 1 - Host 2
 
     insert_table_entry_t_controller(p4info_helper,"downstream2", sw=s1, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
     insert_table_entry_t_vtep(p4info_helper,"downstream2",sw=s1, src_eth_addr="00:00:00:00:01:02", vtep_ip="192.168.0.1")
     insert_table_entry_t_vxlan_segment(p4info_helper,"downstream2", sw=s1, ingress_port="\000\002", vni=0x100000)
-    
+    #insert_table_entry_flow_cache(p4info_helper,"downstream2", sw=s1, dst_ip_addr="10.0.1.1", outter_ip="0.0.0.0", port="\000\001")
+
     #Egress Downstream rules - Switch 1
     insert_table_entry_t_send_frame(p4info_helper, sw=s1, dst_ip_addr="192.168.0.2", smac="00:aa:00:01:00:02", dmac="00:aa:00:02:00:03")
     insert_table_entry_t_send_frame(p4info_helper, sw=s1, dst_ip_addr="192.168.0.100", smac="00:00:00:00:01:05", dmac="00:00:00:00:01:05")
@@ -487,12 +476,12 @@ def insert_preliminary_rules(p4info_helper,s1,s2):
 
 def rnd_poll_counter(p4info_helper,sw):
     while True:
-        #sleep(0.01)
-        if(len(rules_in_cache) > 1):
-            mutex.acquire()
+        sleep(2)
+        if(len(rules_in_cache) > 3):
+            #mutex.acquire()
             rnd_rule_index = random.randint(0,len(rules_in_cache)-1)
             rnd_rule = rules_in_cache[rnd_rule_index]
-            mutex.release()
+            #mutex.release()
             ###### Changed to 'downstream1' for simplicity - might need to be made more general ######
             table_name = "basic_tutorial_ingress.downstream1.flow_cache"
             table_entry = p4info_helper.buildTableEntry(
@@ -500,24 +489,28 @@ def rnd_poll_counter(p4info_helper,sw):
                 match_fields = {
                     "hdr.ipv4.dstAddr": (rnd_rule[0],32)
                 })
+            #print("Switch %s asks for the counter of rule :" % (sw.name))
+            #print(rnd_rule)
+            #print("TEST1")
             for response in sw.ReadDirectCounter(table_entry = table_entry, table_id = p4info_helper.get_tables_id(table_name)):
                 for entity in response.entities:
                     direct_counter_entry = entity.direct_counter_entry
                 counter_value = int("%d"%( direct_counter_entry.data.packet_count))
-                mutex.acquire()
+                #mutex.acquire()
                 for rule in rules_in_cache:
                     if(rule[0] == rnd_rule[0]):
                         if(counter_value > rule[1]):
                             rule[1] = counter_value
-                mutex.release()
+                #mutex.release()
                 #rule[5] = int("%d"%( direct_counter_entry.data.packet_count))
+            #print("TEST2")
 
 def main(p4info_file_path, bmv2_file_path, my_topology):
     # Instantiate a P4Runtime helper from the p4info file
     # - then need to read from the file compile from P4 Program, which call .p4info
     p4info_helper = p4runtime_lib.helper.P4InfoHelper(p4info_file_path)
     try:
-        import_topology(my_topology)
+        #import_topology(my_topology)
         """
             建立與範例當中使用到的兩個 switch - s1, s2
             使用的是 P4Runtime gRPC 的連線。
@@ -595,7 +588,7 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
 
             #thread.start_new_thread(get_k_lfu_rules,())
             #thread.start_new_thread(readTableRules_thread,(p4info_helper,s1,s2))     
-            #thread.start_new_thread(plot_statistics,(p4info_helper,s1))
+            thread.start_new_thread(plot_statistics,(p4info_helper,s1))
 
         except:
             print "Error: unable to start thread"
@@ -603,6 +596,8 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
             if not q.empty():
                 pkt = q.get()
                 #pkt.show2()
+                #print("The lengh of the packet is: ")
+                #print(len(pkt))
                 if(pkt.haslayer(IP)):
                     src_ip = pkt.getlayer(IP).src
                     dst_ip = pkt.getlayer(IP).dst
@@ -621,7 +616,8 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
                                     dst_ip_key = ip_to_insert(oracle,pkt_src_mac,pkt_dst_mac,s1,s2)
                                     egress_port = resolve_egress_port(oracle,pkt_src_mac,pkt_dst_mac,s1,s2)
                                     #pkt.show2()
-                                    cache_handler(p4info_helper,s1,pkt_dst_ip)
+                                    if stop_handler is False:
+                                        cache_handler(p4info_helper,s1,pkt_dst_ip)
 
 
         sys.stdout.flush()
@@ -672,5 +668,6 @@ if __name__ == '__main__':
     recent_history = {}
     rules_in_cache = []
     mutex = Lock()
+    stop_handler = False
     # Pass argument into main function
     main(args.p4info, args.bmv2_json, args.my_topology)
