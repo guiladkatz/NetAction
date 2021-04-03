@@ -20,7 +20,10 @@ sys.path.append(
         '../../../utils/'))
 
 CPU_ROLE_ID = 3
-RANDOM_RULES_NUM = 5
+RANDOM_RULES_NUM = 10
+CACHE_NAME =  "basic_tutorial_ingress.downstream1.flow_cache"
+CACHE_SIZE = 20
+
 
 # And then we import
 import p4runtime_lib.bmv2
@@ -42,15 +45,15 @@ def insert_table_entry_flow_cache(p4info_helper,downstream_id, sw, dst_ip_addr, 
     sw.WriteTableEntry(table_entry,election_low=election_id)
     print "Installed flow_cache entry via P4Runtime."
 
-def insert_table_entry_flow_cache_drop(p4info_helper,downstream_id, sw, dst_ip_addr, election_id):
+def insert_table_entry_flow_cache_drop(p4info_helper,downstream_id, sw, dst_ip_addr, role_id):
     table_entry = p4info_helper.buildTableEntry(
         table_name = "basic_tutorial_ingress." + downstream_id + ".flow_cache",
         match_fields = {
             "hdr.ipv4.dstAddr": (dst_ip_addr,32)
         },
         action_name = "basic_tutorial_ingress." + downstream_id + ".drop")
-    sw.WriteTableEntry(table_entry,election_low=election_id)
-    print "Installed flow_cache drop entry via P4Runtime."
+    sw.WriteTableEntry(table_entry,role_id=role_id)
+    #print "Installed flow_cache drop entry via P4Runtime."
 
 def insert_table_entry_lfu(p4info_helper,downstream_id, sw, dst_ip_addr, role_id):
     table_entry = p4info_helper.buildTableEntry(
@@ -76,15 +79,15 @@ def delete_table_entry_flow_cache(p4info_helper,downstream_id, sw, dst_ip_addr, 
     sw.DeleteTableEntry(table_entry,election_low=election_id)
     print "Deleted flow_cache entry via P4Runtime."
 
-def delete_table_entry_flow_cache_drop(p4info_helper,downstream_id, sw, dst_ip_addr, election_id):
+def delete_table_entry_flow_cache_drop(p4info_helper,downstream_id, sw, dst_ip_addr, role_id):
     table_entry = p4info_helper.buildTableEntry(
         table_name = "basic_tutorial_ingress." + downstream_id + ".flow_cache",
         match_fields = {
             "hdr.ipv4.dstAddr": (dst_ip_addr,32)
         },
         action_name = "basic_tutorial_ingress." + downstream_id + ".drop")
-    sw.DeleteTableEntry(table_entry,election_low=election_id)
-    print "Deleted flow_cache entry via P4Runtime."
+    sw.DeleteTableEntry(table_entry,role_id=role_id)
+    #print "Deleted flow_cache entry via P4Runtime."
 
 def delete_table_entry_lfu(p4info_helper,downstream_id, sw, dst_ip_addr, role_id):
     table_entry = p4info_helper.buildTableEntry(
@@ -123,36 +126,37 @@ def readTableRules_lfu(p4info_helper, sw, table_name):
 def readTableRules_flowCache(p4info_helper, sw, table_name):
     #Reads the table entries from all tables on the switch.
     table_id = p4info_helper.get_tables_id(table_name)
-    all_rules = []
+    rules = []
     rules_read_time_begin = time.time()
     for response in sw.ReadTableEntries(table_id=table_id):
         for entity in response.entities:
             entry = entity.table_entry
-            full_table_name = p4info_helper.get_tables_name(entry.table_id)
-            table_name = full_table_name.split(".")
-            if table_name[2] == "flow_cache":
-                param_port = 0
-                param_ip = 0
-                downstream = table_name[1]
-                name = table_name[2]
-                key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
-                action = entry.action.action
-                action_name = p4info_helper.get_actions_name(action.action_id)
-                for p in action.params:
-                    param_name = p4info_helper.get_action_param_name(action_name, p.param_id)
-                    if(param_name == "dst_ip"):
-                        param_ip = socket.inet_ntoa(p.value)
-                    else:
-                        param_port = struct.unpack('>H', p.value)[0]
-                all_rules.append([downstream,name,key_ip,param_ip,param_port,0])
- 
-    if(len(all_rules) > RANDOM_RULES_NUM):
-        random_rules = rnd.sample(all_rules, k = RANDOM_RULES_NUM)
+            table_name = table_name.split(".")
+            param_port = 0
+            param_ip = 0
+            downstream = table_name[1]
+            name = table_name[2]
+            key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
+            action = entry.action.action
+            action_name = p4info_helper.get_actions_name(action.action_id)
+            for p in action.params:
+                param_name = p4info_helper.get_action_param_name(action_name, p.param_id)
+                if(param_name == "dst_ip"):
+                    param_ip = socket.inet_ntoa(p.value)
+                else:
+                    param_port = struct.unpack('>H', p.value)[0]
+            rules.append([downstream,name,key_ip,param_ip,param_port])
+    return rules
+
+def read_rnd_counters_flowCache(p4info_helper, sw, table_name, rules_in_cache, rnd_rules_num):
+    random_rules_dict = {}
+    random_rules = []
+    if(len(rules_in_cache) > rnd_rules_num):
+        random_rules = rnd.sample(rules_in_cache, k = rnd_rules_num)
     else:
-        random_rules = all_rules
+        random_rules = rules_in_cache
     for rule in random_rules:
-        table_name = "basic_tutorial_ingress." + rule[0] + ".flow_cache"
-        dst_ip_addr = rule[2]
+        dst_ip_addr = rule[0]
         table_entry = p4info_helper.buildTableEntry(
         table_name = table_name,
         match_fields = {
@@ -161,8 +165,17 @@ def readTableRules_flowCache(p4info_helper, sw, table_name):
         for response in sw.ReadDirectCounter(table_entry = table_entry, table_id = p4info_helper.get_tables_id(table_name)):
             for entity in response.entities:
                 direct_counter_entry = entity.direct_counter_entry
-            rule[5] = int("%d"%( direct_counter_entry.data.packet_count))
-    return random_rules
+                random_rules_dict[rule[0]] = int("%d"%( direct_counter_entry.data.packet_count))
+    return random_rules_dict
+
+def update_cache(p4info_helper, sw):
+    sleep(0.15)
+    if len(flow_cache) > 0:
+        #rules_in_cache = readTableRules_flowCache(p4info_helper, sw, "basic_tutorial_ingress.downstream1.flow_cache")
+        rnd_rules_and_counters_dict = read_rnd_counters_flowCache(p4info_helper, sw, CACHE_NAME, flow_cache, RANDOM_RULES_NUM)
+        for i in range(len(flow_cache)):
+            if flow_cache[i][0] in rnd_rules_and_counters_dict.keys():
+                flow_cache[i][1] = rnd_rules_and_counters_dict[flow_cache[i][0]]
 
 def printGrpcError(e):
     print "gRPC Error: ", e.details(),
@@ -173,7 +186,46 @@ def printGrpcError(e):
     print "[%s:%s]" % (traceback.tb_frame.f_code.co_filename, traceback.tb_lineno)
 
 def takeCounter(elem):
-    return elem[5]
+    return elem[1]
+
+def server_tcp_socket(p4info_helper, sw1):
+    welcome_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    welcome_socket.bind(('0.0.0.0', 50000))
+    welcome_socket.listen(1)
+    client, addr = welcome_socket.accept()
+    while 1:
+        resp = "ack"
+        data = client.recv(1024)
+        data = data.split(",")
+        if(len(data) > 1):
+            cmd = data[0]
+            new_rule = data[1]
+            resp = "ack"
+            if(cmd == "insert"):
+                if(len(flow_cache) < CACHE_SIZE):
+                    insert_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, new_rule, CPU_ROLE_ID)
+                    flow_cache.append([new_rule,0])
+                    resp += "0,"
+                else:    
+                    lfu = get_lfu_rule()
+                    if lfu is not None:
+                        delete_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, lfu[0], CPU_ROLE_ID)
+                        flow_cache.remove(lfu)
+                        insert_table_entry_flow_cache_drop(p4info_helper,"downstream1", sw1, new_rule, CPU_ROLE_ID)
+                        flow_cache.append([new_rule,0])
+                        resp = resp + "1," + lfu[0] + "," + str(lfu[1])
+
+        #print(resp)
+        client.send(resp)
+        #print("Finished command")
+    client.close()
+
+def get_lfu_rule():
+    lfu = None
+    if(len(flow_cache) > 0):          
+        flow_cache.sort(key=takeCounter)
+        lfu = flow_cache[0]
+    return lfu
 
 def main(p4info_file_path, bmv2_file_path, my_topology):
     # Instantiate a P4Runtime helper from the p4info file
@@ -190,12 +242,16 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
         # 傳送 master arbitration update message 來建立，使得這個 controller 成為
         # master (required by P4Runtime before performing any other write operation)
         s1.MasterArbitrationUpdate(role = CPU_ROLE_ID)
+        thread.start_new_thread(server_tcp_socket,(p4info_helper,s1))
+        thread.start_new_thread(update_cache,(p4info_helper,s1))
+        sleep(10)
 
         while True:
 
-            sleep(0.5)
+            sleep(0.1)
+
+            """
             new_flow_cache_rules = readTableRules_flowCache(p4info_helper,s1,"basic_tutorial_ingress.downstream1.flow_cache")
-            old_lfu_rules = readTableRules_lfu(p4info_helper,s1,"basic_tutorial_ingress.downstream1.lfu")
 
             if(len(new_flow_cache_rules) > 0):          
                 new_flow_cache_rules.sort(key=takeCounter)
@@ -207,7 +263,7 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
                         delete_table_entry_lfu(p4info_helper,"downstream1", s1, str(old_lfu[2]),CPU_ROLE_ID)
                 else:
                     insert_table_entry_lfu(p4info_helper,"downstream1", s1, str(new_lfu[2]),CPU_ROLE_ID)
-
+            """
         sys.stdout.flush()
 
 
@@ -250,4 +306,5 @@ if __name__ == '__main__':
         print "\nBMv2 JSON file not found: %s\nPlease compile the target P4 program first." % args.bmv2_json
         parser.exit(1)
     # Pass argument into main function
+    flow_cache = []
     main(args.p4info, args.bmv2_json, args.my_topology)

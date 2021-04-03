@@ -20,16 +20,18 @@ def fast_flow():
     pkt = pkt / IP(dst=dst_ip) / UDP(dport=dst_port, sport=src_port)
     while time.time() - start_time < MAX_TIME:
         count += 1
-        sleep(0.05)
+        sleep(0.2)
         new_dst_ip = dst_ip.split(".")
         #new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
-        #if(count == 25):
+        #if(count == 15):
         #    count = 0
-        new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,20))
+        new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,15))
         new_dst_ip = ".".join(new_dst_ip)
         pkt[IP].dst = new_dst_ip
+        print(new_dst_ip)
         #pkt.show2()
         sendp(pkt, iface="h1-eth0", verbose=False)
+    
 
 def med_flow():
     count = 0
@@ -42,7 +44,7 @@ def med_flow():
     pkt = Ether(src=src_mac, dst=dst_mac)
     pkt = pkt / IP(dst=dst_ip) / UDP(dport=dst_port, sport=src_port)
     while time.time() - start_time < MAX_TIME:
-        sleep(0.1)
+        sleep(0.5)
         count += 1
         new_dst_ip = dst_ip.split(".")
         #new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
@@ -65,13 +67,13 @@ def slow_flow():
     pkt = Ether(src=src_mac, dst=dst_mac)
     pkt = pkt / IP(dst=dst_ip) / UDP(dport=dst_port, sport=src_port)
     while time.time() - start_time < MAX_TIME:
-        sleep(0.4)
+        sleep(0.8)
         count += 1
         new_dst_ip = dst_ip.split(".")
         #new_dst_ip[3] = str(int(new_dst_ip[3]) + count)
         #if(count == 10):
         #    count = 0
-        new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,10))
+        new_dst_ip[3] = str(int(new_dst_ip[3]) + random.randint(1,5))
         new_dst_ip = ".".join(new_dst_ip)
         pkt[IP].dst = new_dst_ip
         #pkt.show2()
@@ -83,14 +85,14 @@ def main():
     try:
         fast_thread = threading.Thread(target=fast_flow, args = ())
         fast_thread.start()
-        #med_thread = threading.Thread(target=med_flow, args = ())
-        #med_thread.start()
-        #slow_thread = threading.Thread(target=slow_flow, args = ())
-        #slow_thread.start()
+        med_thread = threading.Thread(target=med_flow, args = ())
+        med_thread.start()
+        slow_thread = threading.Thread(target=slow_flow, args = ())
+        slow_thread.start()
 
         fast_thread.join()
-        #med_thread.join()
-        #slow_thread.join()
+        med_thread.join()
+        slow_thread.join()
         print("Sender Terminated")
     except:
         print("Failed starting threads")

@@ -12,16 +12,16 @@ import csv
 from fcntl import ioctl
 import IN
 
-SIOCGIFMTU = 0x8921
-SIOCSIFMTU = 0x8922
-
-
 
 def flow_gen(dst_ip, size):
+    print("Starting thread with ip: ")
+    print(dst_ip)
     flow_dst_ip = dst_ip
     flow_size = size + "K"
-    packet_lenght = "0.5K"
-    bw = "10K"
+    packet_lenght = "1K"
+    bw = "25K"
+    # if Packet Lenght is 1 KBytes and BW is 50 Kbits/sec then 
+    # BW is 2.5 packets/sec
 
     cmd = "iperf -u -c "
     cmd += dst_ip
@@ -34,16 +34,27 @@ def flow_gen(dst_ip, size):
     os.system(cmd)
 
 def main():
-    first_line = True
-    with open('flows.csv') as csvfile:
+
+    count = 0
+    with open('flows_big.csv') as csvfile:
         flows = csv.reader(csvfile, quotechar='|')
         for flow in flows:
-            if first_line is False:
-                thread.start_new_thread(flow_gen,(str(flow[1]),str(flow[2])))
-                next_flow = next(flows)
-                sleep(float(next_flow[3]) - float(flow[3]))
+            if count > 0:
+                if count > 1:
+                    if flow[0] != 'EOF':
+                        thread.start_new_thread(flow_gen,(str(prev_flow[1]),str(prev_flow[2])))
+                        sleep(float(flow[3]) - float(prev_flow[3]))
+                        prev_flow = flow
+                    else:
+                        print(prev_flow)
+                        thread.start_new_thread(flow_gen,(str(prev_flow[1]),str(prev_flow[2])))
+                else:
+                    prev_flow = flow
+                    count += 1
             else:
-                first_line = False
+                count += 1
+    while True:
+        sleep(10000)
 
     print("Sender Terminated")
     
