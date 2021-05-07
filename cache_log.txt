@@ -1,0 +1,796 @@
+Inserted rule is: ('143.204.225.124', 32)
+Inserted rule is: ('13.249.160.132', 32)
+Inserted rule is: ('13.33.191.149', 32)
+Inserted rule is: ('143.204.193.205', 32)
+Inserted rule is: ('70.132.18.135', 32)
+Inserted rule is: ('13.33.80.18', 32)
+Inserted rule is: ('52.218.199.181', 32)
+Inserted rule is: ('70.132.20.219', 32)
+Inserted rule is: ('129.41.175.153', 32)
+Inserted rule is: ('52.84.134.66', 32)
+Inserted rule is: ('13.249.162.79', 32)
+Inserted rule is: ('144.220.78.210', 32)
+Inserted rule is: ('99.78.160.236', 32)
+Inserted rule is: ('13.33.129.125', 32)
+Inserted rule is: ('13.225.111.179', 32)
+Inserted rule is: ('54.192.117.228', 32)
+Inserted rule is: ('103.136.10.167', 32)
+Inserted rule is: ('52.95.134.4', 32)
+Inserted rule is: ('15.177.15.144', 32)
+Inserted rule is: ('54.192.98.52', 32)
+Deleted rule is: ('143.204.225.124', 32) Counter is: 0
+Inserted rule is: ('143.204.49.255', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('13.33.191.149', 32) Counter is: 0
+Inserted rule is: ('165.225.101.147', 32)
+Deleted rule is: ('143.204.193.205', 32) Counter is: 0
+Inserted rule is: ('69.187.71.201', 32)
+Deleted rule is: ('70.132.18.135', 32) Counter is: 0
+Inserted rule is: ('142.202.37.22', 32)
+Deleted rule is: ('13.33.80.18', 32) Counter is: 0
+Inserted rule is: ('13.33.119.123', 32)
+Deleted rule is: ('52.218.199.181', 32) Counter is: 0
+Inserted rule is: ('99.77.147.220', 32)
+Deleted rule is: ('70.132.20.219', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('129.41.175.153', 32) Counter is: 0
+Inserted rule is: ('13.35.65.192', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('13.249.162.79', 32) Counter is: 0
+Inserted rule is: ('88.218.222.192', 32)
+Deleted rule is: ('144.220.78.210', 32) Counter is: 0
+Inserted rule is: ('65.9.149.79', 32)
+Deleted rule is: ('99.78.160.236', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('99.83.198.74', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('104.192.141.224', 32)
+Deleted rule is: ('54.192.117.228', 32) Counter is: 0
+Inserted rule is: ('54.182.215.18', 32)
+Deleted rule is: ('103.136.10.167', 32) Counter is: 0
+Inserted rule is: ('168.149.243.56', 32)
+Deleted rule is: ('52.95.134.4', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('13.227.7.212', 32)
+Deleted rule is: ('54.192.98.52', 32) Counter is: 0
+Inserted rule is: ('130.176.67.82', 32)
+Deleted rule is: ('143.204.49.255', 32) Counter is: 0
+Inserted rule is: ('103.246.251.234', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('46.51.190.88', 32)
+Deleted rule is: ('165.225.101.147', 32) Counter is: 0
+Inserted rule is: ('54.239.144.66', 32)
+Deleted rule is: ('69.187.71.201', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('142.202.37.22', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('13.33.119.123', 32) Counter is: 0
+Inserted rule is: ('144.220.78.210', 32)
+Deleted rule is: ('99.77.147.220', 32) Counter is: 0
+Inserted rule is: ('13.33.252.253', 32)
+Deleted rule is: ('52.94.7.75', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('13.35.65.192', 32) Counter is: 0
+Inserted rule is: ('54.239.14.231', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('88.218.222.192', 32) Counter is: 0
+Inserted rule is: ('52.84.252.157', 32)
+Deleted rule is: ('65.9.149.79', 32) Counter is: 0
+Inserted rule is: ('99.86.10.116', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('130.176.67.183', 32)
+Deleted rule is: ('99.83.198.74', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('104.192.141.224', 32) Counter is: 0
+Inserted rule is: ('13.33.191.149', 32)
+Deleted rule is: ('54.182.215.18', 32) Counter is: 0
+Inserted rule is: ('13.35.161.136', 32)
+Deleted rule is: ('168.149.243.56', 32) Counter is: 0
+Inserted rule is: ('103.136.10.167', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('143.204.193.205', 32)
+Deleted rule is: ('13.227.7.212', 32) Counter is: 0
+Inserted rule is: ('99.77.147.220', 32)
+Deleted rule is: ('130.176.67.82', 32) Counter is: 0
+Inserted rule is: ('99.150.80.191', 32)
+Deleted rule is: ('103.246.251.234', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('46.51.190.88', 32) Counter is: 0
+Inserted rule is: ('52.95.180.94', 32)
+Deleted rule is: ('54.239.144.66', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('54.192.117.228', 32)
+Deleted rule is: ('144.220.78.210', 32) Counter is: 0
+Inserted rule is: ('13.32.32.155', 32)
+Deleted rule is: ('13.33.252.253', 32) Counter is: 0
+Inserted rule is: ('70.132.27.58', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('143.204.49.255', 32)
+Deleted rule is: ('54.239.14.231', 32) Counter is: 0
+Inserted rule is: ('66.178.136.188', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('13.225.137.73', 32)
+Deleted rule is: ('52.84.252.157', 32) Counter is: 0
+Inserted rule is: ('65.9.149.79', 32)
+Deleted rule is: ('99.86.10.116', 32) Counter is: 0
+Inserted rule is: ('69.187.71.201', 32)
+Deleted rule is: ('130.176.67.183', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('13.33.191.149', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('13.35.161.136', 32) Counter is: 0
+Inserted rule is: ('130.176.158.162', 32)
+Deleted rule is: ('103.136.10.167', 32) Counter is: 0
+Inserted rule is: ('70.132.63.167', 32)
+Deleted rule is: ('143.204.193.205', 32) Counter is: 0
+Inserted rule is: ('3.5.140.33', 32)
+Deleted rule is: ('99.77.147.220', 32) Counter is: 0
+Inserted rule is: ('103.246.251.234', 32)
+Deleted rule is: ('99.150.80.191', 32) Counter is: 0
+Inserted rule is: ('18.198.194.202', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('71.152.21.240', 32)
+Deleted rule is: ('52.95.180.94', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('99.82.184.159', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('144.220.78.210', 32)
+Deleted rule is: ('54.192.117.228', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('13.32.32.155', 32) Counter is: 0
+Inserted rule is: ('13.35.254.183', 32)
+Deleted rule is: ('70.132.27.58', 32) Counter is: 0
+Inserted rule is: ('168.149.243.56', 32)
+Deleted rule is: ('143.204.49.255', 32) Counter is: 0
+Inserted rule is: ('130.176.10.98', 32)
+Deleted rule is: ('66.178.136.188', 32) Counter is: 0
+Inserted rule is: ('70.132.26.241', 32)
+Deleted rule is: ('13.225.137.73', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('65.9.149.79', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('69.187.71.201', 32) Counter is: 0
+Inserted rule is: ('13.33.191.149', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('130.176.131.212', 32) Counter is: 0
+Inserted rule is: ('99.86.121.102', 32)
+Deleted rule is: ('130.176.158.162', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('70.132.63.167', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('3.5.140.33', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('103.246.251.234', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('18.198.194.202', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('71.152.21.240', 32) Counter is: 0
+Inserted rule is: ('130.176.103.54', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('65.8.68.46', 32)
+Deleted rule is: ('99.82.184.159', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('144.220.78.210', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('70.132.27.58', 32)
+Deleted rule is: ('13.35.254.183', 32) Counter is: 0
+Inserted rule is: ('103.136.10.167', 32)
+Deleted rule is: ('168.149.243.56', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('130.176.10.98', 32) Counter is: 0
+Inserted rule is: ('52.46.35.45', 32)
+Deleted rule is: ('70.132.26.241', 32) Counter is: 0
+Inserted rule is: ('54.230.234.13', 32)
+Deleted rule is: ('52.94.7.75', 32) Counter is: 0
+Inserted rule is: ('99.77.157.81', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('143.204.193.205', 32)
+Deleted rule is: ('13.33.191.149', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('13.35.161.136', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('65.9.92.226', 32)
+Deleted rule is: ('99.86.121.102', 32) Counter is: 0
+Inserted rule is: ('70.132.20.120', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('71.152.1.242', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('13.35.20.110', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('69.187.71.201', 32)
+Deleted rule is: ('13.35.25.115', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('104.193.207.40', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('130.176.103.54', 32) Counter is: 0
+Inserted rule is: ('144.220.78.210', 32)
+Deleted rule is: ('65.8.68.46', 32) Counter is: 0
+Inserted rule is: ('3.5.140.33', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('70.132.26.241', 32)
+Deleted rule is: ('71.152.99.125', 32) Counter is: 0
+Inserted rule is: ('52.95.180.94', 32)
+Deleted rule is: ('70.132.27.58', 32) Counter is: 0
+Inserted rule is: ('70.132.63.167', 32)
+Deleted rule is: ('103.136.10.167', 32) Counter is: 0
+Inserted rule is: ('70.132.57.54', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('168.149.243.56', 32)
+Deleted rule is: ('52.46.35.45', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('54.230.234.13', 32) Counter is: 0
+Inserted rule is: ('18.198.194.202', 32)
+Deleted rule is: ('99.77.157.81', 32) Counter is: 0
+Inserted rule is: ('66.178.136.188', 32)
+Deleted rule is: ('143.204.193.205', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('130.176.131.212', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('13.35.161.136', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('65.9.92.226', 32) Counter is: 0
+Inserted rule is: ('71.152.21.240', 32)
+Deleted rule is: ('70.132.20.120', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('71.152.1.242', 32) Counter is: 0
+Inserted rule is: ('54.192.117.228', 32)
+Deleted rule is: ('13.35.20.110', 32) Counter is: 0
+Inserted rule is: ('15.177.82.22', 32)
+Deleted rule is: ('69.187.71.201', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('130.176.10.98', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('144.220.78.210', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('3.5.140.33', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('70.132.26.241', 32) Counter is: 0
+Inserted rule is: ('13.33.191.149', 32)
+Deleted rule is: ('52.95.180.94', 32) Counter is: 0
+Inserted rule is: ('65.9.92.226', 32)
+Deleted rule is: ('70.132.63.167', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('70.132.57.54', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('168.149.243.56', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('18.198.194.202', 32) Counter is: 0
+Inserted rule is: ('52.95.180.94', 32)
+Deleted rule is: ('66.178.136.188', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('52.94.7.75', 32) Counter is: 0
+Inserted rule is: ('70.132.27.58', 32)
+Deleted rule is: ('104.193.207.40', 32) Counter is: 0
+Inserted rule is: ('69.187.71.201', 32)
+Deleted rule is: ('13.35.25.115', 32) Counter is: 0
+Inserted rule is: ('52.46.35.45', 32)
+Deleted rule is: ('71.152.21.240', 32) Counter is: 0
+Inserted rule is: ('3.5.140.33', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('70.132.26.241', 32)
+Deleted rule is: ('54.192.117.228', 32) Counter is: 0
+Inserted rule is: ('103.246.251.234', 32)
+Deleted rule is: ('15.177.82.22', 32) Counter is: 0
+Inserted rule is: ('144.220.78.210', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('13.35.161.136', 32)
+Deleted rule is: ('130.176.10.98', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('71.152.1.242', 32)
+Deleted rule is: ('13.33.191.149', 32) Counter is: 0
+Inserted rule is: ('70.132.57.54', 32)
+Deleted rule is: ('65.9.92.226', 32) Counter is: 0
+Inserted rule is: ('13.225.137.73', 32)
+Deleted rule is: ('71.152.99.125', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('15.177.82.22', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('143.204.193.205', 32)
+Deleted rule is: ('130.176.131.212', 32) Counter is: 0
+Inserted rule is: ('70.132.63.167', 32)
+Deleted rule is: ('52.95.180.94', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('70.132.27.58', 32) Counter is: 0
+Inserted rule is: ('66.178.136.188', 32)
+Deleted rule is: ('69.187.71.201', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('52.46.35.45', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('3.5.140.33', 32) Counter is: 0
+Inserted rule is: ('130.176.10.98', 32)
+Deleted rule is: ('70.132.26.241', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('103.246.251.234', 32) Counter is: 0
+Inserted rule is: ('18.198.194.202', 32)
+Deleted rule is: ('144.220.78.210', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('13.35.161.136', 32) Counter is: 0
+Inserted rule is: ('71.152.21.240', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('54.192.117.228', 32)
+Deleted rule is: ('71.152.1.242', 32) Counter is: 0
+Inserted rule is: ('65.9.92.226', 32)
+Deleted rule is: ('70.132.57.54', 32) Counter is: 0
+Inserted rule is: ('13.33.191.149', 32)
+Deleted rule is: ('13.225.137.73', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('104.193.207.40', 32) Counter is: 0
+Inserted rule is: ('52.95.180.94', 32)
+Deleted rule is: ('15.177.82.22', 32) Counter is: 0
+Inserted rule is: ('69.187.71.201', 32)
+Deleted rule is: ('143.204.193.205', 32) Counter is: 0
+Inserted rule is: ('70.132.27.58', 32)
+Deleted rule is: ('70.132.63.167', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('71.152.1.242', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('15.177.82.22', 32)
+Deleted rule is: ('66.178.136.188', 32) Counter is: 0
+Inserted rule is: ('13.225.137.73', 32)
+Deleted rule is: ('13.35.25.115', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('71.152.99.125', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('130.176.10.98', 32) Counter is: 0
+Inserted rule is: ('144.220.78.210', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('52.46.35.45', 32)
+Deleted rule is: ('18.198.194.202', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('71.152.21.240', 32) Counter is: 0
+Inserted rule is: ('103.246.251.234', 32)
+Deleted rule is: ('52.94.7.75', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('54.192.117.228', 32) Counter is: 0
+Inserted rule is: ('70.132.26.241', 32)
+Deleted rule is: ('65.9.92.226', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('13.33.191.149', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('143.204.193.205', 32)
+Deleted rule is: ('52.95.180.94', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('69.187.71.201', 32) Counter is: 0
+Inserted rule is: ('130.176.10.98', 32)
+Deleted rule is: ('70.132.27.58', 32) Counter is: 0
+Inserted rule is: ('71.152.21.240', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('70.132.57.54', 32)
+Deleted rule is: ('71.152.1.242', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('15.177.82.22', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('13.225.137.73', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('130.176.131.212', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('66.178.136.188', 32)
+Deleted rule is: ('144.220.78.210', 32) Counter is: 0
+Inserted rule is: ('18.198.194.202', 32)
+Deleted rule is: ('52.46.35.45', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('65.9.92.226', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('13.33.191.149', 32)
+Deleted rule is: ('103.246.251.234', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('13.35.25.115', 32) Counter is: 0
+Inserted rule is: ('54.192.117.228', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('69.187.71.201', 32)
+Deleted rule is: ('70.132.26.241', 32) Counter is: 0
+Inserted rule is: ('70.132.27.58', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('104.193.207.40', 32) Counter is: 0
+Inserted rule is: ('52.95.180.94', 32)
+Deleted rule is: ('143.204.193.205', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('71.152.99.125', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('130.176.10.98', 32) Counter is: 0
+Inserted rule is: ('144.220.78.210', 32)
+Deleted rule is: ('71.152.21.240', 32) Counter is: 0
+Inserted rule is: ('15.177.82.22', 32)
+Deleted rule is: ('70.132.57.54', 32) Counter is: 0
+Inserted rule is: ('13.225.137.73', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('66.178.136.188', 32) Counter is: 0
+Inserted rule is: ('52.46.35.45', 32)
+Deleted rule is: ('18.198.194.202', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('71.152.21.240', 32)
+Deleted rule is: ('65.9.92.226', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('13.33.191.149', 32) Counter is: 0
+Inserted rule is: ('130.176.10.98', 32)
+Deleted rule is: ('52.94.7.75', 32) Counter is: 0
+Inserted rule is: ('70.132.26.241', 32)
+Deleted rule is: ('54.192.117.228', 32) Counter is: 0
+Inserted rule is: ('70.132.57.54', 32)
+Deleted rule is: ('69.187.71.201', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('70.132.27.58', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('52.95.180.94', 32) Counter is: 0
+Inserted rule is: ('143.204.193.205', 32)
+Deleted rule is: ('130.176.131.212', 32) Counter is: 0
+Inserted rule is: ('66.178.136.188', 32)
+Deleted rule is: ('13.35.25.115', 32) Counter is: 0
+Inserted rule is: ('13.33.191.149', 32)
+Deleted rule is: ('144.220.78.210', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('15.177.82.22', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('13.225.137.73', 32) Counter is: 0
+Inserted rule is: ('69.187.71.201', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('18.198.194.202', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('52.46.35.45', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('71.152.99.125', 32) Counter is: 0
+Inserted rule is: ('70.132.27.58', 32)
+Deleted rule is: ('71.152.21.240', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('54.192.117.228', 32)
+Deleted rule is: ('130.176.10.98', 32) Counter is: 0
+Inserted rule is: ('13.225.137.73', 32)
+Deleted rule is: ('70.132.26.241', 32) Counter is: 0
+Inserted rule is: ('144.220.78.210', 32)
+Deleted rule is: ('70.132.57.54', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('104.193.207.40', 32) Counter is: 0
+Inserted rule is: ('52.95.180.94', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('143.204.193.205', 32) Counter is: 0
+Inserted rule is: ('15.177.82.22', 32)
+Deleted rule is: ('66.178.136.188', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('13.33.191.149', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('69.187.71.201', 32) Counter is: 0
+Inserted rule is: ('71.152.21.240', 32)
+Deleted rule is: ('18.198.194.202', 32) Counter is: 0
+Inserted rule is: ('70.132.26.241', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('13.33.191.149', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('52.46.35.45', 32)
+Deleted rule is: ('52.94.7.75', 32) Counter is: 0
+Inserted rule is: ('70.132.57.54', 32)
+Deleted rule is: ('13.35.25.115', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('70.132.27.58', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('130.176.131.212', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('54.192.117.228', 32) Counter is: 0
+Inserted rule is: ('66.178.136.188', 32)
+Deleted rule is: ('13.225.137.73', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('144.220.78.210', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('52.95.180.94', 32) Counter is: 0
+Inserted rule is: ('18.198.194.202', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('69.187.71.201', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('15.177.82.22', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('143.204.193.205', 32)
+Deleted rule is: ('71.152.99.125', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('70.132.27.58', 32)
+Deleted rule is: ('71.152.21.240', 32) Counter is: 0
+Inserted rule is: ('54.192.117.228', 32)
+Deleted rule is: ('70.132.26.241', 32) Counter is: 0
+Inserted rule is: ('13.225.137.73', 32)
+Deleted rule is: ('13.33.191.149', 32) Counter is: 0
+Inserted rule is: ('144.220.78.210', 32)
+Deleted rule is: ('52.46.35.45', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('70.132.57.54', 32) Counter is: 0
+Inserted rule is: ('52.95.180.94', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('104.193.207.40', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('66.178.136.188', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('15.177.82.22', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('13.33.191.149', 32)
+Deleted rule is: ('130.176.131.212', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('18.198.194.202', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('69.187.71.201', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('71.152.21.240', 32)
+Deleted rule is: ('143.204.193.205', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('52.94.7.75', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('13.35.25.115', 32) Counter is: 0
+Inserted rule is: ('70.132.57.54', 32)
+Deleted rule is: ('70.132.27.58', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('54.192.117.228', 32) Counter is: 0
+Inserted rule is: ('18.198.194.202', 32)
+Deleted rule is: ('13.225.137.73', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('144.220.78.210', 32) Counter is: 0
+Inserted rule is: ('66.178.136.188', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('52.95.180.94', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('70.132.27.58', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('69.187.71.201', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('52.46.35.45', 32)
+Deleted rule is: ('71.152.99.125', 32) Counter is: 0
+Inserted rule is: ('54.192.117.228', 32)
+Deleted rule is: ('15.177.82.22', 32) Counter is: 0
+Inserted rule is: ('144.220.78.210', 32)
+Deleted rule is: ('13.33.191.149', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('104.193.207.40', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('52.95.180.94', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('13.225.137.73', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('71.152.21.240', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('15.177.82.22', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('70.132.57.54', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('130.176.131.212', 32) Counter is: 0
+Inserted rule is: ('143.204.193.205', 32)
+Deleted rule is: ('18.198.194.202', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('13.33.191.149', 32)
+Deleted rule is: ('66.178.136.188', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('52.94.7.75', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('70.132.27.58', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('69.187.71.201', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('52.46.35.45', 32) Counter is: 0
+Inserted rule is: ('71.152.21.240', 32)
+Deleted rule is: ('54.192.117.228', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('144.220.78.210', 32) Counter is: 0
+Inserted rule is: ('18.198.194.202', 32)
+Deleted rule is: ('13.35.25.115', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('70.132.57.54', 32)
+Deleted rule is: ('52.95.180.94', 32) Counter is: 0
+Inserted rule is: ('70.132.27.58', 32)
+Deleted rule is: ('13.225.137.73', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('104.193.207.40', 32) Counter is: 0
+Inserted rule is: ('66.178.136.188', 32)
+Deleted rule is: ('15.177.82.22', 32) Counter is: 0
+Inserted rule is: ('54.192.117.228', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('69.187.71.201', 32)
+Deleted rule is: ('71.152.99.125', 32) Counter is: 0
+Inserted rule is: ('52.46.35.45', 32)
+Deleted rule is: ('143.204.193.205', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('13.33.191.149', 32) Counter is: 0
+Inserted rule is: ('52.95.180.94', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('13.225.137.73', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('15.177.82.22', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('71.152.21.240', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('18.198.194.202', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('130.176.131.212', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('70.132.57.54', 32) Counter is: 0
+Inserted rule is: ('143.204.193.205', 32)
+Deleted rule is: ('70.132.27.58', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('52.94.7.75', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('71.152.21.240', 32)
+Deleted rule is: ('66.178.136.188', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('54.192.117.228', 32) Counter is: 0
+Inserted rule is: ('18.198.194.202', 32)
+Deleted rule is: ('69.187.71.201', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('52.46.35.45', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('13.35.25.115', 32) Counter is: 0
+Inserted rule is: ('70.132.57.54', 32)
+Deleted rule is: ('52.95.180.94', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('66.178.136.188', 32)
+Deleted rule is: ('71.152.99.125', 32) Counter is: 0
+Inserted rule is: ('70.132.27.58', 32)
+Deleted rule is: ('13.225.137.73', 32) Counter is: 0
+Inserted rule is: ('54.192.117.228', 32)
+Deleted rule is: ('15.177.82.22', 32) Counter is: 0
+Inserted rule is: ('52.46.35.45', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('104.193.207.40', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('52.95.180.94', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('13.225.137.73', 32)
+Deleted rule is: ('143.204.193.205', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('15.177.82.22', 32)
+Deleted rule is: ('13.225.27.8', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('71.152.21.240', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('52.84.134.66', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('18.198.194.202', 32) Counter is: 0
+Inserted rule is: ('54.182.235.163', 32)
+Deleted rule is: ('130.176.131.212', 32) Counter is: 0
+Inserted rule is: ('143.204.193.205', 32)
+Deleted rule is: ('52.94.206.106', 32) Counter is: 0
+Inserted rule is: ('54.182.133.37', 32)
+Deleted rule is: ('52.94.7.75', 32) Counter is: 0
+Inserted rule is: ('13.249.33.38', 32)
+Deleted rule is: ('70.132.57.54', 32) Counter is: 0
+Inserted rule is: ('71.152.21.240', 32)
+Deleted rule is: ('15.177.15.144', 32) Counter is: 0
+Inserted rule is: ('52.84.134.66', 32)
+Deleted rule is: ('66.178.136.188', 32) Counter is: 0
+Inserted rule is: ('13.225.27.8', 32)
+Deleted rule is: ('70.132.27.58', 32) Counter is: 0
+Inserted rule is: ('18.198.194.202', 32)
+Deleted rule is: ('54.192.117.228', 32) Counter is: 0
+Inserted rule is: ('70.132.57.54', 32)
+Deleted rule is: ('52.46.35.45', 32) Counter is: 0
+Inserted rule is: ('130.176.131.212', 32)
+Deleted rule is: ('13.33.129.125', 32) Counter is: 0
+Inserted rule is: ('52.94.206.106', 32)
+Deleted rule is: ('13.35.25.115', 32) Counter is: 0
+Inserted rule is: ('52.94.7.75', 32)
+Deleted rule is: ('52.95.180.94', 32) Counter is: 0
+Inserted rule is: ('15.177.15.144', 32)
+Deleted rule is: ('13.225.111.179', 32) Counter is: 0
+Inserted rule is: ('13.33.129.125', 32)
+Deleted rule is: ('13.225.137.73', 32) Counter is: 0
+Inserted rule is: ('13.35.25.115', 32)
+Deleted rule is: ('71.152.99.125', 32) Counter is: 0
+Inserted rule is: ('54.192.117.228', 32)
+Deleted rule is: ('15.177.82.22', 32) Counter is: 0
+Inserted rule is: ('52.46.35.45', 32)
+Deleted rule is: ('104.193.207.40', 32) Counter is: 0
+Inserted rule is: ('13.225.137.73', 32)
+Deleted rule is: ('104.207.173.120', 32) Counter is: 0
+Inserted rule is: ('71.152.99.125', 32)
+Deleted rule is: ('13.249.160.132', 32) Counter is: 0
+Inserted rule is: ('15.177.82.22', 32)
+Deleted rule is: ('54.182.235.163', 32) Counter is: 0
+Inserted rule is: ('13.225.111.179', 32)
+Deleted rule is: ('143.204.193.205', 32) Counter is: 0
+Inserted rule is: ('104.207.173.120', 32)
+Deleted rule is: ('54.182.133.37', 32) Counter is: 0
+Inserted rule is: ('13.249.160.132', 32)
+Deleted rule is: ('13.249.33.38', 32) Counter is: 0
+Inserted rule is: ('104.193.207.40', 32)
+Deleted rule is: ('71.152.21.240', 32) Counter is: 0
+Inserted rule is: ('54.182.1

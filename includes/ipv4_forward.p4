@@ -137,7 +137,7 @@ control vxlan_ingress_downstream(inout headers_t hdr, inout metadata_t meta, ino
     }
 
     table flow_cache {
-
+        support_timeout = true;
         key = {
             hdr.ipv4.dstAddr : lpm;
         }
@@ -149,7 +149,6 @@ control vxlan_ingress_downstream(inout headers_t hdr, inout metadata_t meta, ino
         }
         default_action = send_to_controller();
         counters = my_direct_counter;
-
     }
 
     action set_vtep_ip(bit<32> vtep_ip) {
@@ -258,8 +257,9 @@ control vxlan_egress_downstream(inout headers_t hdr, inout metadata_t meta, inou
 
         hdr.vxlan.setValid();
         hdr.vxlan.reserved = 0;
+        hdr.vxlan.next_proto = 0x3;
         hdr.vxlan.reserved_2 = 0;
-        hdr.vxlan.flags = 0;
+        hdr.vxlan.flags = 0xc;
         hdr.vxlan.vni = meta.vxlan_vni;
 
     }

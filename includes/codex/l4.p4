@@ -27,7 +27,8 @@ header udp_t {
 // VXLAN support 
 header vxlan_t {
     bit<8>  flags;          // flags
-    bit<24> reserved;       // reserved
+    bit<16> reserved;       // reserved
+    bit<8> next_proto;        // next protocol
     bit<24> vni;            // identifier
     bit<8>  reserved_2;     // reserved
 }
