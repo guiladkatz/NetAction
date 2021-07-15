@@ -1,0 +1,1 @@
+libtool --mode=execute gdb --args ~/stateful-bmv2/targets/simple_switch/simple_switch -i 0@veth1 -i 1@veth2 --log-console --thrift-port 50001 ../distinct_occurrence_IR_hacked.json

@@ -1,0 +1,12 @@
+register_write IngressPipeImpl.natIPAddress 0 16843009
+
+register_write IngressPipeImpl.ports 0 10001
+register_write IngressPipeImpl.ports 1 10002
+register_write IngressPipeImpl.ports 2 10003
+register_write IngressPipeImpl.ports 3 10004
+register_write IngressPipeImpl.ports 4 10005
+register_write IngressPipeImpl.ports 5 10006
+register_write IngressPipeImpl.ports 6 10007
+register_write IngressPipeImpl.ports 7 10008
+register_write IngressPipeImpl.ports 8 10009
+register_write IngressPipeImpl.ports 9 10010

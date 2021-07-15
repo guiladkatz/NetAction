@@ -1,0 +1,1 @@
+register_write IngressPipeImpl.natIPAddress 0 16843009

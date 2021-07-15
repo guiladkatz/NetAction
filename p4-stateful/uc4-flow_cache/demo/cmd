@@ -1,0 +1,1 @@
+~/stateful-bmv2/targets/simple_switch/simple_switch -i 0@sswitch_dc -i 1@sswitch_otr -i 2@sswitch_servers --log-console --thrift-port 50001 ../uc4_flowcache_IR_hacked.json

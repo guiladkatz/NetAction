@@ -1,0 +1,2 @@
+export SIMPLE_SWITCH=~/stateful-bmv2/targets/simple_switch/simple_switch
+export SS_CLI=~/stateful-bmv2/targets/simple_switch/sswitch_CLI\ --thrift-port\ 50001
