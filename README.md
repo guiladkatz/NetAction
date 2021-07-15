@@ -23,9 +23,9 @@ In order to recreate the experiemnts performed in this project, follow the instr
 
 ## Option 1 - Stateless BMv2
   There is a built image containing all the necessary software and including the stateless version of the BMv2 switch, Mininet and P4Runtime installed, including all their dependencies.
-  1. Download the VM from [here] (https://drive.google.com/file/d/13NHWkkmn69W90dJGQUC7m7i4USeMTegF/view).
-  2. Clone [this] (https://github.com/kevinbird61/p4-researching) repository into the VM.
-  3. Go to p4-researching/src/fundamental and clone the this repository to that location.
+  1. Download the VM from [here](https://drive.google.com/file/d/13NHWkkmn69W90dJGQUC7m7i4USeMTegF/view).
+  2. Clone [this](https://github.com/kevinbird61/p4-researching) repository into the VM.
+  3. Go to p4-researching/src/fundamental and clone this repository to that location.
   4. Move the "utils" folder form this repository to /p4-researching (Replacing the existing "utils" folder)
   5. Open a command line and navigate to p4-researching/src/fundamental/NetAction
   6. Be aware, that there might be some missing Python libraries. Please stay tuned to the errors regarding missing libraries, and install them if necessary.
@@ -45,8 +45,21 @@ In order to recreate the experiemnts performed in this project, follow the instr
       - Experiement parameters
   15. Use this data as desired. You may write a Python program to plot graphs. 
 
+## Option 2 - Stateful BMv2
+
+1. Download a blank inage of Ubuntu 18.04 (18.04 version is recommenede, otherwise some of the dependencies might not work)
+2. clone [this](https://github.com/jafingerhut/p4-guide) repository into the VM.
+3. clone this repository also to a different location.
+4. The link from step 2 suggests to use a Bash script to automatically install all the required software. There are several scripts available, each one with a minor difference.
+5. Edit the Bash script you chose, so that instead of cloning the stateless BMv2, it will install the files cloned in step 3.
+6. If the installation fails because of missing files, you can complete them from the stateless BMv2 repository.
+7. After the installation is done, preceed from step 2 like in the stateless BMv2.
+8. The new version of the BMv2 is backwards-compatible. Therefore, all the features available in the stateless BMv2 should also be avilable here.
 
 
-the VXLAN related P4 code is based on the code from: https://github.com/P4-Research/p4-demos/tree/master/vxlan
+The parameters of the experiments can (and should!) be modified, to explore different behaviors.
+If the generation of different traffic is desired, run the TrafficGenerator.py code to generate a new "flows.csv" file.
 
-The controller is written in Python and is partially based on the code from: https://github.com/kevinbird61/p4-researching
+For any questions, feel free to contact me at guiladkatz@gmail.com
+
+Good Luck!
