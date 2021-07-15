@@ -3,7 +3,7 @@ pkg_info {
 }
 tables {
   preamble {
-    id: 41041816
+    id: 33570712
     name: "basic_tutorial_ingress.downstream1.lfu"
     alias: "downstream1.lfu"
   }
@@ -14,18 +14,18 @@ tables {
     match_type: LPM
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
   action_refs {
-    id: 32161401
+    id: 16825977
   }
   size: 1024
 }
 tables {
   preamble {
-    id: 35485957
+    id: 33585413
     name: "basic_tutorial_ingress.downstream1.t_vxlan_segment"
     alias: "downstream1.t_vxlan_segment"
   }
@@ -36,18 +36,18 @@ tables {
     match_type: EXACT
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
   action_refs {
-    id: 31350430
+    id: 16801438
   }
   size: 1024
 }
 tables {
   preamble {
-    id: 37137030
+    id: 33598086
     name: "basic_tutorial_ingress.downstream1.flow_cache"
     alias: "downstream1.flow_cache"
   }
@@ -58,21 +58,21 @@ tables {
     match_type: LPM
   }
   action_refs {
-    id: 25876441
+    id: 16832473
   }
   action_refs {
-    id: 24305333
+    id: 16834229
   }
   action_refs {
-    id: 32161401
+    id: 16825977
   }
-  direct_resource_ids: 334917579
+  direct_resource_ids: 318795723
   size: 1024
   idle_timeout_behavior: NOTIFY_CONTROL
 }
 tables {
   preamble {
-    id: 40981200
+    id: 33575632
     name: "basic_tutorial_ingress.downstream1.t_vtep"
     alias: "downstream1.t_vtep"
   }
@@ -83,10 +83,10 @@ tables {
     match_type: EXACT
   }
   action_refs {
-    id: 20299556
+    id: 16826148
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
@@ -94,7 +94,7 @@ tables {
 }
 tables {
   preamble {
-    id: 40576286
+    id: 33563934
     name: "basic_tutorial_ingress.downstream1.t_controller"
     alias: "downstream1.t_controller"
   }
@@ -105,10 +105,10 @@ tables {
     match_type: EXACT
   }
   action_refs {
-    id: 27812061
+    id: 16802013
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
@@ -116,7 +116,7 @@ tables {
 }
 tables {
   preamble {
-    id: 39140350
+    id: 33569790
     name: "basic_tutorial_ingress.downstream2.lfu"
     alias: "downstream2.lfu"
   }
@@ -127,18 +127,18 @@ tables {
     match_type: LPM
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
   action_refs {
-    id: 31666867
+    id: 16790195
   }
   size: 1024
 }
 tables {
   preamble {
-    id: 39158384
+    id: 33587824
     name: "basic_tutorial_ingress.downstream2.t_vxlan_segment"
     alias: "downstream2.t_vxlan_segment"
   }
@@ -149,18 +149,18 @@ tables {
     match_type: EXACT
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
   action_refs {
-    id: 20127523
+    id: 16785187
   }
   size: 1024
 }
 tables {
   preamble {
-    id: 45443317
+    id: 33581301
     name: "basic_tutorial_ingress.downstream2.flow_cache"
     alias: "downstream2.flow_cache"
   }
@@ -171,21 +171,21 @@ tables {
     match_type: LPM
   }
   action_refs {
-    id: 21048727
+    id: 16788887
   }
   action_refs {
-    id: 22742064
+    id: 16778288
   }
   action_refs {
-    id: 31666867
+    id: 16790195
   }
-  direct_resource_ids: 329387482
+  direct_resource_ids: 318770650
   size: 1024
   idle_timeout_behavior: NOTIFY_CONTROL
 }
 tables {
   preamble {
-    id: 44465979
+    id: 33587003
     name: "basic_tutorial_ingress.downstream2.t_vtep"
     alias: "downstream2.t_vtep"
   }
@@ -196,10 +196,10 @@ tables {
     match_type: EXACT
   }
   action_refs {
-    id: 33537884
+    id: 16826204
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
@@ -207,7 +207,7 @@ tables {
 }
 tables {
   preamble {
-    id: 44922651
+    id: 33584923
     name: "basic_tutorial_ingress.downstream2.t_controller"
     alias: "downstream2.t_controller"
   }
@@ -218,10 +218,10 @@ tables {
     match_type: EXACT
   }
   action_refs {
-    id: 25974368
+    id: 16799328
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
@@ -229,7 +229,7 @@ tables {
 }
 tables {
   preamble {
-    id: 40680438
+    id: 33602550
     name: "basic_tutorial_ingress.upstream.t_vxlan_term"
     alias: "t_vxlan_term"
   }
@@ -240,18 +240,18 @@ tables {
     match_type: EXACT
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
   action_refs {
-    id: 22909788
+    id: 16814940
   }
   size: 1024
 }
 tables {
   preamble {
-    id: 33822532
+    id: 33560388
     name: "basic_tutorial_ingress.upstream.t_forward_l2"
     alias: "t_forward_l2"
   }
@@ -262,10 +262,10 @@ tables {
     match_type: EXACT
   }
   action_refs {
-    id: 31703300
+    id: 16826628
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
@@ -273,7 +273,7 @@ tables {
 }
 tables {
   preamble {
-    id: 33728907
+    id: 33597835
     name: "basic_tutorial_ingress.upstream.t_forward_underlay"
     alias: "t_forward_underlay"
   }
@@ -284,10 +284,10 @@ tables {
     match_type: EXACT
   }
   action_refs {
-    id: 27616000
+    id: 16802560
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
@@ -295,7 +295,7 @@ tables {
 }
 tables {
   preamble {
-    id: 45744010
+    id: 33619850
     name: "basic_tutorial_egress.downstream.t_send_frame"
     alias: "t_send_frame"
   }
@@ -306,10 +306,10 @@ tables {
     match_type: EXACT
   }
   action_refs {
-    id: 21244508
+    id: 16788060
   }
   action_refs {
-    id: 21257015
+    id: 16800567
     annotations: "@defaultonly"
     scope: DEFAULT_ONLY
   }
@@ -317,15 +317,14 @@ tables {
 }
 actions {
   preamble {
-    id: 21257015
+    id: 16800567
     name: "NoAction"
     alias: "NoAction"
-    annotations: "@noWarn(\"unused\")"
   }
 }
 actions {
   preamble {
-    id: 31350430
+    id: 16801438
     name: "basic_tutorial_ingress.downstream1.set_vni"
     alias: "downstream1.set_vni"
   }
@@ -337,14 +336,14 @@ actions {
 }
 actions {
   preamble {
-    id: 24305333
+    id: 16834229
     name: "basic_tutorial_ingress.downstream1.send_to_controller"
     alias: "downstream1.send_to_controller"
   }
 }
 actions {
   preamble {
-    id: 25876441
+    id: 16832473
     name: "basic_tutorial_ingress.downstream1.set_outer_dst_ip"
     alias: "downstream1.set_outer_dst_ip"
   }
@@ -361,14 +360,14 @@ actions {
 }
 actions {
   preamble {
-    id: 32161401
+    id: 16825977
     name: "basic_tutorial_ingress.downstream1.drop"
     alias: "downstream1.drop"
   }
 }
 actions {
   preamble {
-    id: 20299556
+    id: 16826148
     name: "basic_tutorial_ingress.downstream1.set_vtep_ip"
     alias: "downstream1.set_vtep_ip"
   }
@@ -380,7 +379,7 @@ actions {
 }
 actions {
   preamble {
-    id: 27812061
+    id: 16802013
     name: "basic_tutorial_ingress.downstream1.set_controller_ip_and_port"
     alias: "downstream1.set_controller_ip_and_port"
   }
@@ -397,14 +396,14 @@ actions {
 }
 actions {
   preamble {
-    id: 17533128
+    id: 16812232
     name: "basic_tutorial_ingress.downstream1.set_arp"
     alias: "downstream1.set_arp"
   }
 }
 actions {
   preamble {
-    id: 20127523
+    id: 16785187
     name: "basic_tutorial_ingress.downstream2.set_vni"
     alias: "downstream2.set_vni"
   }
@@ -416,14 +415,14 @@ actions {
 }
 actions {
   preamble {
-    id: 22742064
+    id: 16778288
     name: "basic_tutorial_ingress.downstream2.send_to_controller"
     alias: "downstream2.send_to_controller"
   }
 }
 actions {
   preamble {
-    id: 21048727
+    id: 16788887
     name: "basic_tutorial_ingress.downstream2.set_outer_dst_ip"
     alias: "downstream2.set_outer_dst_ip"
   }
@@ -440,14 +439,14 @@ actions {
 }
 actions {
   preamble {
-    id: 31666867
+    id: 16790195
     name: "basic_tutorial_ingress.downstream2.drop"
     alias: "downstream2.drop"
   }
 }
 actions {
   preamble {
-    id: 33537884
+    id: 16826204
     name: "basic_tutorial_ingress.downstream2.set_vtep_ip"
     alias: "downstream2.set_vtep_ip"
   }
@@ -459,7 +458,7 @@ actions {
 }
 actions {
   preamble {
-    id: 25974368
+    id: 16799328
     name: "basic_tutorial_ingress.downstream2.set_controller_ip_and_port"
     alias: "downstream2.set_controller_ip_and_port"
   }
@@ -476,21 +475,21 @@ actions {
 }
 actions {
   preamble {
-    id: 27807853
+    id: 16797805
     name: "basic_tutorial_ingress.downstream2.set_arp"
     alias: "downstream2.set_arp"
   }
 }
 actions {
   preamble {
-    id: 22909788
+    id: 16814940
     name: "basic_tutorial_ingress.upstream.vxlan_decap"
     alias: "vxlan_decap"
   }
 }
 actions {
   preamble {
-    id: 31703300
+    id: 16826628
     name: "basic_tutorial_ingress.upstream.forward"
     alias: "forward"
   }
@@ -502,7 +501,7 @@ actions {
 }
 actions {
   preamble {
-    id: 27616000
+    id: 16802560
     name: "basic_tutorial_ingress.upstream.forward_underlay"
     alias: "forward_underlay"
   }
@@ -514,7 +513,7 @@ actions {
 }
 actions {
   preamble {
-    id: 21244508
+    id: 16788060
     name: "basic_tutorial_egress.downstream.rewrite_macs"
     alias: "rewrite_macs"
   }
@@ -531,36 +530,80 @@ actions {
 }
 actions {
   preamble {
-    id: 28661031
+    id: 16799015
     name: "basic_tutorial_egress.downstream.vxlan_encap"
     alias: "vxlan_encap"
   }
 }
+counters {
+  preamble {
+    id: 302019396
+    name: "basic_tutorial_ingress.downstream1.flow_counter"
+    alias: "downstream1.flow_counter"
+  }
+  spec {
+    unit: PACKETS
+  }
+  size: 1
+}
+counters {
+  preamble {
+    id: 301998618
+    name: "basic_tutorial_ingress.downstream1.entry_flow_counter"
+    alias: "downstream1.entry_flow_counter"
+  }
+  spec {
+    unit: PACKETS
+  }
+  size: 1
+}
+counters {
+  preamble {
+    id: 302042836
+    name: "basic_tutorial_ingress.downstream2.flow_counter"
+    alias: "downstream2.flow_counter"
+  }
+  spec {
+    unit: PACKETS
+  }
+  size: 1
+}
+counters {
+  preamble {
+    id: 302024336
+    name: "basic_tutorial_ingress.downstream2.entry_flow_counter"
+    alias: "downstream2.entry_flow_counter"
+  }
+  spec {
+    unit: PACKETS
+  }
+  size: 1
+}
 direct_counters {
   preamble {
-    id: 334917579
+    id: 318795723
     name: "basic_tutorial_ingress.downstream1.my_direct_counter"
     alias: "downstream1.my_direct_counter"
   }
   spec {
     unit: PACKETS
   }
-  direct_table_id: 37137030
+  direct_table_id: 33598086
 }
 direct_counters {
   preamble {
-    id: 329387482
+    id: 318770650
     name: "basic_tutorial_ingress.downstream2.my_direct_counter"
     alias: "downstream2.my_direct_counter"
   }
   spec {
     unit: PACKETS
   }
-  direct_table_id: 45443317
+  direct_table_id: 33581301
 }
 controller_packet_metadata {
   preamble {
-    id: 81826293
+    id: 67146229
     name: "packet_in"
     alias: "packet_in"
     annotations: "@controller_header(\"packet_in\")"
@@ -573,7 +616,7 @@ controller_packet_metadata {
 }
 controller_packet_metadata {
   preamble {
-    id: 76689799
+    id: 67121543
     name: "packet_out"
     alias: "packet_out"
     annotations: "@controller_header(\"packet_out\")"

@@ -24,8 +24,6 @@ control basic_tutorial_ingress(
 ){
     vxlan_ingress_downstream()  downstream1;
     vxlan_ingress_downstream()  downstream2;
-    //vxlan_ingress_downstream()  downstream3;
-    //vxlan_ingress_downstream()  downstream4;
 
     vxlan_ingress_upstream()    upstream;
 

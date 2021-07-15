@@ -90,12 +90,15 @@ control vxlan_egress_upstream(inout headers_t hdr, inout metadata_t meta, inout 
 control vxlan_ingress_downstream(inout headers_t hdr, inout metadata_t meta, inout standard_metadata_t standard_metadata) {
 
     direct_counter(CounterType.packets) my_direct_counter;
-    //counter(MAX_PORTS_NUM,CounterType.packets) flow_counter;
+    counter(1,CounterType.packets) flow_counter;
+    counter(1,CounterType.packets) entry_flow_counter;
+
 
     action set_vni(bit<24> vni) {
         meta.vxlan_vni = vni;
     }
     action send_to_controller() {
+        flow_counter.count(0);
         standard_metadata.egress_spec = CONTROLLER_PORT;
     }
 
@@ -104,7 +107,7 @@ control vxlan_ingress_downstream(inout headers_t hdr, inout metadata_t meta, ino
         meta.dst_ip = dst_ip;
         //flow_counter.count(hdr.ipv4.dstAddr & 0x0000ffff);
         //flow_counter.count(0);
-        my_direct_counter.count();
+        //my_direct_counter.count();
 
     }
     action drop() {
@@ -193,6 +196,7 @@ control vxlan_ingress_downstream(inout headers_t hdr, inout metadata_t meta, ino
     }
     apply {
         if (hdr.ipv4.isValid()) {
+            entry_flow_counter.count(0);
             lfu.apply();
             t_vtep.apply();
             t_vxlan_segment.apply();

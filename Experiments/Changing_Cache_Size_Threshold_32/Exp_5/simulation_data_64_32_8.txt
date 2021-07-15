@@ -1,0 +1,8 @@
+Threshold = 32
+Cache Size = 64
+Simulation Run Time = 600
+Random Rules Num = 8
+Eviction Threshold = 48
+Traffic Details Are: 
+PACKET_LENGHT = 0.015625K = 16 KBytes Packets 
+BANDWIDTH = 10 Kbit/sec
