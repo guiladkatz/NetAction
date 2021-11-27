@@ -4,37 +4,22 @@ import argparse, grpc, os, sys, json
 import time
 from time import sleep
 import thread
-from threading import Lock
 import Queue
 import socket
 import struct
-import pickle
-import binascii
 import matplotlib.pyplot as plt
+import numpy as np
 from scapy.all import *
-import csv
 
 
-
-
-THRESHOLD = 64
-CACHE_SIZE = 0
-RANDOM_RULES_NUM = 8
-RUN_TIME = 600
-EVICTION_THRESHOLD = 192
-PORT = 50101
-inserts = []
-deletes = []
-inserts_count = 0
-deletes_count = 0
-sim_start_time = 0
-packet_list = []
-stop_handler = False
 
 # set our lib path
 sys.path.append(
     os.path.join(os.path.dirname(os.path.abspath(__file__)),
         '../../../utils/'))
+
+SWITCH_TO_HOST_PORT = 1
+SWITCH_TO_SWITCH_PORT = 2
 
 # And then we import
 import p4runtime_lib.bmv2
@@ -52,7 +37,7 @@ def insert_table_entry_t_vxlan_term(p4info_helper, sw, dst_eth_addr):
         action_params = {
         })
     sw.WriteTableEntry(table_entry)
-    print ("Installed t_vxlan_term entry via P4Runtime.")
+    print "Installed t_vxlan_term entry via P4Runtime."
 
 def insert_table_entry_t_forward_l2(p4info_helper, sw, dst_eth_addr, port=None):
     table_entry = p4info_helper.buildTableEntry(
@@ -65,7 +50,7 @@ def insert_table_entry_t_forward_l2(p4info_helper, sw, dst_eth_addr, port=None):
             "port": port
         })
     sw.WriteTableEntry(table_entry)
-    print ("Installed t_forward_l2 entry via P4Runtime.")
+    print "Installed t_forward_l2 entry via P4Runtime."
 
 def insert_table_entry_t_forward_underlay(p4info_helper, sw, ip_dstAddr, port):
     table_entry = p4info_helper.buildTableEntry(
@@ -78,7 +63,7 @@ def insert_table_entry_t_forward_underlay(p4info_helper, sw, ip_dstAddr, port):
             "port": port
         })
     sw.WriteTableEntry(table_entry)
-    print ("Installed t_forward_l2 entry via P4Runtime.")
+    print "Installed t_forward_l2 entry via P4Runtime."
 
 def insert_table_entry_t_vxlan_segment(p4info_helper,downstream_id, sw, ingress_port, vni):
     table_entry = p4info_helper.buildTableEntry(
@@ -91,7 +76,7 @@ def insert_table_entry_t_vxlan_segment(p4info_helper,downstream_id, sw, ingress_
             "vni": vni
         })
     sw.WriteTableEntry(table_entry)
-    print ("Installed t_vxlan_segment_set_vni entry via P4Runtime.")
+    print "Installed t_vxlan_segment_set_vni entry via P4Runtime."
 
 def insert_table_entry_flow_cache(p4info_helper,downstream_id, sw, dst_ip_addr, outter_ip, port):
     table_entry = p4info_helper.buildTableEntry(
@@ -105,7 +90,7 @@ def insert_table_entry_flow_cache(p4info_helper,downstream_id, sw, dst_ip_addr, 
             "port"  : port
         })
     sw.WriteTableEntry(table_entry)
-    #print ("Installed flow_cache entry via P4Runtime.")
+    print "Installed flow_cache entry via P4Runtime."
 
 def insert_table_entry_flow_cache_drop(p4info_helper,downstream_id, sw, dst_ip_addr):
     table_entry = p4info_helper.buildTableEntry(
@@ -115,7 +100,7 @@ def insert_table_entry_flow_cache_drop(p4info_helper,downstream_id, sw, dst_ip_a
         },
         action_name = "basic_tutorial_ingress." + downstream_id + ".drop")
     sw.WriteTableEntry(table_entry)
-    print ("Installed flow_cache drop entry via P4Runtime.")
+    print "Installed flow_cache drop entry via P4Runtime."
 
 def insert_table_entry_t_vtep(p4info_helper,downstream_id, sw, src_eth_addr, vtep_ip):
     table_entry = p4info_helper.buildTableEntry(
@@ -128,7 +113,7 @@ def insert_table_entry_t_vtep(p4info_helper,downstream_id, sw, src_eth_addr, vte
             "vtep_ip": vtep_ip
         })
     sw.WriteTableEntry(table_entry)
-    print ("Installed t_vtep entry via P4Runtime.")
+    print "Installed t_vtep entry via P4Runtime."
 
 def insert_table_entry_t_controller(p4info_helper,downstream_id, sw, key_port, ip_dstAddr, param_port):
     table_entry = p4info_helper.buildTableEntry(
@@ -142,7 +127,7 @@ def insert_table_entry_t_controller(p4info_helper,downstream_id, sw, key_port, i
             "port"        : param_port
         })
     sw.WriteTableEntry(table_entry)
-    print ("Installed t_controller entry via P4Runtime.")
+    print "Installed t_controller entry via P4Runtime."
 
 def insert_table_entry_t_send_frame(p4info_helper, sw, dst_ip_addr, smac, dmac):
     table_entry = p4info_helper.buildTableEntry(
@@ -156,7 +141,7 @@ def insert_table_entry_t_send_frame(p4info_helper, sw, dst_ip_addr, smac, dmac):
             "dmac": dmac
         })
     sw.WriteTableEntry(table_entry)
-    print ("Installed t_send_frame entry via P4Runtime.")
+    print "Installed t_send_frame entry via P4Runtime."
 
 def delete_table_entry_flow_cache(p4info_helper,downstream_id, sw, dst_ip_addr, outter_ip, port):
     table_entry = p4info_helper.buildTableEntry(
@@ -170,17 +155,82 @@ def delete_table_entry_flow_cache(p4info_helper,downstream_id, sw, dst_ip_addr, 
             "port"  : port
         })
     sw.DeleteTableEntry(table_entry)
-    #print ("Deleted flow_cache entry via P4Runtime.")
+    print "Deleted flow_cache entry via P4Runtime."
 
 def delete_table_entry_flow_cache_drop(p4info_helper,downstream_id, sw, dst_ip_addr):
     table_entry = p4info_helper.buildTableEntry(
         table_name = "basic_tutorial_ingress." + downstream_id + ".flow_cache",
         match_fields = {
-            "hdr.ipv4.dstAddr": (dst_ip_addr,32) #Change '32' to the desired prefix matc
+            "hdr.ipv4.dstAddr": (dst_ip_addr,32)
         },
         action_name = "basic_tutorial_ingress." + downstream_id + ".drop")
     sw.DeleteTableEntry(table_entry)
-    #print ("Deleted flow_cache entry via P4Runtime.")
+    print "Deleted flow_cache entry via P4Runtime."
+
+def get_k_lfu_rules(p4info_helper, sw, table_name):
+    table_id = p4info_helper.get_tables_id(table_name)
+    all_rules = []
+    for response in sw.ReadTableEntries(table_id=table_id):
+        for entity in response.entities:
+            entry = entity.table_entry
+            full_table_name = p4info_helper.get_tables_name(entry.table_id)
+            table_name = full_table_name.split(".")
+            if table_name[2] == "lfu":
+                param_port = 0
+                param_ip = 0
+                downstream = table_name[1]
+                name = table_name[2]
+                key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
+                action = entry.action.action
+                action_name = p4info_helper.get_actions_name(action.action_id)
+                for p in action.params:
+                    param_name = p4info_helper.get_action_param_name(action_name, p.param_id)
+                    if(param_name == "dst_ip"):
+                        param_ip = socket.inet_ntoa(p.value)
+                    else:
+                        param_port = struct.unpack('>H', p.value)[0]
+                all_rules.append([downstream,name,key_ip,param_ip,param_port,0])
+    return all_rules
+
+
+    """
+    rules = []
+    request = "Give me the k LFU Rules"
+    src_mac ='00:00:00:00:01:05'
+    dst_mac ='00:00:00:00:01:05'
+    controller_ip = "192.168.0.100"
+    switch_ip = '192.168.0.5'
+    src_port = 50100
+    dst_port = 1234
+    send_pkt = Ether(src=src_mac, dst=dst_mac)
+    send_pkt = send_pkt / IP(dst=switch_ip) / TCP(dport=dst_port, sport=src_port)
+    send_pkt = send_pkt / request
+    sendp(send_pkt, iface="h5-eth0", verbose=False)
+
+    flag = False
+    while(flag == False):
+        if not q.empty():
+            rec_pkt = q.get()
+            if(rec_pkt.haslayer(UDP)):
+                if(rec_pkt.getlayer(UDP).dport == 50100):
+                    flag = True
+                    print("Received packet in get k lfu rules is:")
+                    pkt_rules = rec_pkt.payload.payload.payload
+                    print("The type of the payload is:")
+                    print(type(pkt_rules))
+                    print(pkt_rules)
+                    if(len(pkt_rules) > 0):
+                        pkt_rules = str(pkt_rules)
+                        rules = pkt_rules.split(";")
+                    print("The rules are:")
+                    print(rules)
+                    table_rules[sw.name] = rules
+                else:
+                    q.put(rec_pkt)
+            else:
+                 q.put(rec_pkt)
+    """
+
 
 def readTableRules(p4info_helper, sw, table_name):  
     #Reads the table entries from all tables on the switch.
@@ -190,434 +240,324 @@ def readTableRules(p4info_helper, sw, table_name):
     for response in sw.ReadTableEntries(table_id=table_id):
         for entity in response.entities:
             entry = entity.table_entry
-            key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
-            mask = int(p4info_helper.get_match_field_value(entry.match[0])[1])
-            rules.append([(key_ip,mask),0])
+            full_table_name = p4info_helper.get_tables_name(entry.table_id)
+            table_name = full_table_name.split(".")
+            if table_name[2] == "flow_cache":
+                param_port = 0
+                param_ip = 0
+                downstream = table_name[1]
+                name = table_name[2]
+                key_ip = socket.inet_ntoa(p4info_helper.get_match_field_value(entry.match[0])[0])
+                action = entry.action.action
+                action_name = p4info_helper.get_actions_name(action.action_id)
+                for p in action.params:
+                    param_name = p4info_helper.get_action_param_name(action_name, p.param_id)
+                    if(param_name == "dst_ip"):
+                        param_ip = socket.inet_ntoa(p.value)
+                    else:
+                        param_port = struct.unpack('>H', p.value)[0]
+                rules.append([downstream,name,key_ip,param_ip,param_port,0])
     #Reads the counters entries from all table entries on the cache.
     for rule in rules:
-        rule_ip = rule[0][0]
-        rule_mask = rule[0][1]
+        table_name = "basic_tutorial_ingress." + rule[0] + ".flow_cache"
+        dst_ip_addr = rule[2]
         table_entry = p4info_helper.buildTableEntry(
-        table_name = "basic_tutorial_ingress.downstream1.flow_cache",
+        table_name = table_name,
         match_fields = {
-            "hdr.ipv4.dstAddr": (rule_ip,rule_mask)
+            "hdr.ipv4.dstAddr": (dst_ip_addr,32)
         })
-        for response in sw.ReadDirectCounter(table_entry = table_entry, table_id = table_id):
+        for response in sw.ReadDirectCounter(table_entry = table_entry, table_id = p4info_helper.get_tables_id(table_name)):
             for entity in response.entities:
                 direct_counter_entry = entity.direct_counter_entry
-            rule[1] = int("%d"%( direct_counter_entry.data.packet_count))
-    return rules
-
-def read_link_utilization_counter(p4info_helper, sw, link_util_array1, link_util_array2):
-    global inserts
-    global deletes
-    global inserts_count
-    global deletes_count
-    global sim_start_time
-    global packet_list
-    global stop_handler
-
-    filename_data = ""+str(CACHE_SIZE) + "_"+str(THRESHOLD)+"_"+str(RANDOM_RULES_NUM)+".txt"
-    counter_name = "basic_tutorial_ingress.downstream1.flow_counter"
-    entry_counter_name = "basic_tutorial_ingress.downstream1.entry_flow_counter"
-    index = 0
-    delta_count = 0
-    interval = 0.5
-    inc_interval = interval
-    prev_counter = 0
-    entry_prev_counter = 0
-    prev_inserts_count = 0
-    prev_deletes_count = 0
-    sim_start_time = time.time()
-    while(inc_interval < RUN_TIME):
-        sleep(interval)
-        curr_time = time.time()-sim_start_time
-        for response in sw.ReadCounters(p4info_helper.get_counters_id(counter_name), index):
-            for entity in response.entities:
-                counter = entity.counter_entry
-                #print("Controller counter is")
-                #print(int(counter.data.packet_count))
-                delta_count = int(counter.data.packet_count) - prev_counter
-                prev_counter = int(counter.data.packet_count)
-                link_util_array1.append((curr_time,delta_count))
-        for response in sw.ReadCounters(p4info_helper.get_counters_id(entry_counter_name), index):
-            for entity in response.entities:
-                counter = entity.counter_entry
-                #print("Total counter is")
-                #print(int(counter.data.packet_count))
-                delta_count = int(counter.data.packet_count) - entry_prev_counter
-                entry_prev_counter = int(counter.data.packet_count)
-                link_util_array2.append((curr_time,delta_count))
-        delta_count = inserts_count - prev_inserts_count
-        prev_inserts_count = inserts_count
-        inserts.append((curr_time,delta_count))
-
-        delta_count = deletes_count - prev_deletes_count
-        prev_deletes_count = deletes_count
-        deletes.append((curr_time,delta_count))
-
-        inc_interval+=interval
-    stop_handler = True
-
-    filename = "Experiments/simulation_data_"+filename_data
-    with open(filename,'w') as filehandle1:
-        filehandle1.write("Threshold = %s\n"%(str(THRESHOLD)))
-        filehandle1.write("Cache Size = %s\n" % (str(CACHE_SIZE)))
-        filehandle1.write("Simulation Run Time = %s\n" % (str(RUN_TIME)))
-        filehandle1.write("Random Rules Num = %s\n" % (str(RANDOM_RULES_NUM)))
-        filehandle1.write("Eviction Threshold = %s\n" % (str(EVICTION_THRESHOLD)))
-        filehandle1.write("Traffic Details Are: \n")
-        filehandle1.write("PACKET_LENGHT = 0.015625K = 16 KBytes Packets \n")
-        filehandle1.write("BANDWIDTH = 10 Kbit/sec\n")
-
-
-    filename = "Experiments_2_LFRU/link_utilization_"+filename_data
-    with open(filename,'w') as filehandle1:
-        for item in link_util_array1:
-            filehandle1.write("%s\n" % (str(item)))
-    
-    filename = "Experiments_2_LFRU/traffic_arrival_rate_"+filename_data
-    with open(filename,'w') as filehandle2:
-        for item in link_util_array2:
-            filehandle2.write("%s\n" % (str(item)))
-    
-    filename = "Experiments_2_LFRU/Insertions_"+filename_data
-    with open(filename,'w') as filehandle2:
-        final_insertions = inserts
-        for item in final_insertions:
-            filehandle2.write("%s\n" % (str(item)))
-
-    filename = "Experiments_2_LFRU/Deletions_"+filename_data
-    with open(filename,'w') as filehandle2:
-        final_deletions = deletes
-        for item in final_deletions:
-            filehandle2.write("%s\n" % (str(item)))
-
-    print("FINISH")
+                #print "The switch is: %s: %d packets" % (sw.name, direct_counter_entry.data.packet_count)
+            rule[5] = int("%d"%( direct_counter_entry.data.packet_count))
+    table_rules[sw.name] = rules
 
 def printGrpcError(e):
-    print ("gRPC Error: ", e.details())
+    print "gRPC Error: ", e.details(),
     status_code = e.code()
-    print ("(%s)" % status_code.name)
+    print "(%s)" % status_code.name,
+    # detail about sys.exc_info - https://docs.python.org/2/library/sys.html#sys.exc_info
     traceback = sys.exc_info()[2]
-    print ("[%s:%s]" % (traceback.tb_frame.f_code.co_filename, traceback.tb_lineno))
+    print "[%s:%s]" % (traceback.tb_frame.f_code.co_filename, traceback.tb_lineno)
 
-def rawSniffer():
-    global packet_list
-    rawSocket = socket.socket(socket.PF_PACKET, socket.SOCK_RAW, socket.htons(0x0800))
-    count = 0
-    timer = time.time()
-    test = False
-    while True:
-        # creating a rawSocket for communications
-        # PF_SOCKET (packet interface), SOCK_RAW (Raw socket) - htons (protocol) 0x08000 = IP Protocol
-
-        # read a packet with recvfrom method
-        pkt = rawSocket.recvfrom(2048) # tuple return
-        #print(pkt)
-
-        # Ethernet Header tuple segmentation
-        eHeader = pkt[0][0:14]
-
-        # parsing using unpack
-        eth_hdr = struct.unpack("!6s6s2s", eHeader) # 6 dest MAC, 6 host MAC, 2 ethType
-
-        # using hexify to convert the tuple value NBO into Hex format
-        binascii.hexlify(eth_hdr[0])
-        binascii.hexlify(eth_hdr[1])
-        binascii.hexlify(eth_hdr[2])
-
-        tcpHeader = pkt[0][34:54]
-        tcp_hdr = struct.unpack("!HH16s", tcpHeader)
-
-        #print "Source Source Port: %s" % tcp_hdr[0]
-        #print "Source Destination Port: %s" % tcp_hdr[1]
-
-        #print(type(tcp_hdr[1]))
-        if tcp_hdr[1] == 4789:
-            ipHeader = pkt[0][64:84]
-            ip_hdr = struct.unpack("!12s4s4s", ipHeader) # 12s represents Identification, Time to Live, Protocol | Flags, Fragment Offset, Header Checksum
-            ip_dest = socket.inet_ntoa(ip_hdr[2])
-            q.put(ip_dest)
-            #packet_new_list.append(ip_dest)
-            #print "Source IP address %s" % socket.inet_ntoa(ip_hdr[1]) # network to ascii convertion
-            #print "Destination IP address %s" % socket.inet_ntoa(ip_hdr[2]) # network to ascii convertion
-
-        # unapck the TCP header (source and destination port numbers)    
 
 def sniff_and_enqueue():
-
     while True:
         packets = sniff(iface="h5-eth0",filter="dst host 192.168.0.100",count=1)
         q.put(packets[0])
 
+def flow_count(src,dst):
+    flow_count = 0
+    if (src,dst) in flow_counter:
+        flow_counter[(src,dst)] += 1
+        flow_count = flow_counter[(src,dst)]
+    else:
+        if (dst,src) in flow_counter:
+            flow_counter[(dst,src)] += 1
+            flow_count = flow_counter[(dst,src)]
+        else:
+            flow_counter[(src,dst)] = 0
+
+    return flow_count
+
+def takeCounter(elem):
+    return elem[5]
+
+def takeBool(elem):
+    return elem[1]
+
+def ip_to_insert(oracle, pkt_src_mac, pkt_dst_mac,s1,s2):
+    ip = "0.0.0.0"
+    if(oracle[pkt_dst_mac][0] != oracle[pkt_src_mac][0]): #If the sender and receiver are not on the same switch
+        if(oracle[pkt_dst_mac][0] == s2):
+            ip = "192.168.0.2"
+        if(oracle[pkt_dst_mac][0] == s1):
+            ip = "192.168.0.1"
+    return ip
+
+def resolve_outter_ip(oracle, pkt_src_mac, pkt_dst_mac,s1,s2):
+    outter_ip = "0.0.0.0"
+    if(oracle[pkt_dst_mac][0] == s2):
+        outter_ip = "192.168.0.2"
+    if(oracle[pkt_dst_mac][0] == s1):
+        outter_ip = "192.168.0.1"
+    return outter_ip
+
+def resolve_egress_port(oracle,pkt_src_mac,pkt_dst_mac,s1,s2):
+    egress_port =  oracle[pkt_dst_mac][2]
+    if(oracle[pkt_dst_mac][0] != oracle[pkt_src_mac][0]): #If the sender and receiver are not on the same switch
+        if(oracle[pkt_dst_mac][0] == s2):
+            egress_port = "\000\004"
+        if(oracle[pkt_dst_mac][0] == s1):
+            egress_port = "\000\003"
+    return egress_port
+
 def plot_statistics(p4info_helper,sw1):
-    sleep(RUN_TIME+1000)
-    print("TESTTTTT")
-    stop_handler = True
-    sleep(20)
-    cmd = "stop$0.0.0.0"
-    server_socket_insert.send(cmd)
-    sleep(20)
-    rules = readTableRules(p4info_helper,sw1,"basic_tutorial_ingress.downstream1.flow_cache")
-    rules_list = []
+    sleep(600)
+    readTableRules(p4info_helper,sw1)
+    rules = table_rules[sw1.name]
+    flow_list = []
     rule_hits_list = []
     cache_time_list = []
-    flow_id = []
     for rule in rules:
-        global_history[rule[0]][0] +=  rule[1]
-        global_history[rule[0]][4] +=  time.time() - global_history[rule[0]][3]
+        global_history[rule[2]][0] +=  rule[5]
+        global_history[rule[2]][4] +=  time.time() - global_history[rule[2]][3]
+
 
     new_global_history_hit_sort = sorted(global_history.items(), key=lambda x: x[1][0], reverse=True)
+    print("After sorting by hit")
+    print(new_global_history_hit_sort)
     for elem in new_global_history_hit_sort:
+        flow_list.append(elem[0])
         rule_hits_list.append(elem[1][0])
 
     new_global_history_time_in_cache_sort = sorted(global_history.items(), key=lambda x: x[1][4], reverse=True)
     for elem in new_global_history_time_in_cache_sort:
         cache_time_list.append(elem[1][4])
-    
-    with open('flows_sorted_by_size.csv') as csvfile:
-        count = 0
-        flows_sorted_by_size = csv.reader(csvfile, quotechar='|')
-        for flow in flows_sorted_by_size:
-            if(count > 0):
-                print(flow)
-                rule = Policy[flow[1]]
-                if rule not in rules_list:
-                    rules_list.append(rule)
-            else:
-                count+=1
-
-    print(rules_list)
-    print("the lenght is:")
-    print(len(rules_list))
-
-    with open('rules_stats.csv', 'w') as file:
-        writer = csv.writer(file)
-        writer.writerow(["Hits", "Is_in_cache", "Arrival_time", "Cache_insertion_time", "Overall_time_in_cache"])
-        writer.writerow(["After sorting by hit"])
-        for rule in new_global_history_hit_sort:
-            writer.writerow(rule)
-        writer.writerow(["After sorting by time in cache"])
-        for rule in new_global_history_time_in_cache_sort:
-            writer.writerow(rule)
-
-
+    print("After sorting by time in cache")
+    print(new_global_history_time_in_cache_sort)
+    flow_index = list(range(len(cache_time_list)))
+    print(flow_index)
     title1 ="Cache Performance"
 
     fig1, (ax1,ax2) = plt.subplots(1,2)
     fig1.suptitle(title1)
 
-    ax1.plot(rules_list,rule_hits_list)
-    ax1.set_xlabel('Flow ID - Sorted by Size')
+    ax1.plot(flow_index,rule_hits_list)
+    ax1.set_xlabel('Flow Number')
     ax1.set_ylabel('Number of Hits')
     ax1.set_title('Cache Hits')
 
-    ax2.plot(rules_list,cache_time_list)
-    ax2.set_xlabel('Flow ID - Sorted by Size')
+    ax2.plot(flow_index,cache_time_list)
+    ax2.set_xlabel('Flow Number')
     ax2.set_ylabel('Time in Cache')
     ax2.set_title('Time in Cache')
 
     fig1.show()
     plt.show()
-
-def switch_insert_rule_cmd(rule):
-    cmd = "insert$" + rule
-    server_socket_insert.send(cmd)
-    recv_data = server_socket_insert.recv(1024)
-    recv_data = recv_data.split("$")
-    if(len(recv_data) > 1 and recv_data[0] != "ack0"):
-        splitted_rule = recv_data[1].split("'")
-        rule_ip = splitted_rule[1]
-        rule_mask = splitted_rule[2][2:4]
-        recv_data[1] = (rule_ip,int(rule_mask))
-    return recv_data
-
-def recv_deleted_rule(server_socket_delete):
-    global deletes
-    global deletes_count
-    global sim_start_time
     
-    while(True):
-        recv_data = ""
-        evicted_rules_num = 0
-        try:
-            recv_data = server_socket_delete.recv(1024)
-            server_socket_delete.send("ack")
-        except socket.error as msg:
-            print("in recv_deleted_rule The error msg is: ")
-            print(msg)
-            server_socket_delete.close()
-            break
-        recv_data = recv_data.split("$")
-        if(CACHE_SIZE != 0):
-            if (len(recv_data) > 0):
-                evicted_rules_num = int(recv_data[0])
-            if evicted_rules_num > 0:
-                evicted_rules = recv_data[2:]
-                for evicted_rule in evicted_rules:
-                    deletes_count+=1
-                    #deletes.append((time.time()-sim_start_time,evicted_rule))
-                    splitted_rule = evicted_rule.split("/")
-                    rule_ip = splitted_rule[0]
-                    rule_mask = int(splitted_rule[1])
-                    rule_counter = int(splitted_rule[2])
-                    removed_rule = (rule_ip,int(rule_mask))
+def get_cache_size():
+    rules_in_cache = 0
+    for rule in global_history.values():
+        if rule[1] == True:
+            rules_in_cache+=1
+    return rules_in_cache
 
-                    global_history[removed_rule][0] += rule_counter
-                    global_history[removed_rule][1] = False
-                    for rule_in_cache in rules_in_cache:
-                        if(rule_in_cache[0] == removed_rule):
-                            global_history[removed_rule][0] += rule_in_cache[1]
-                            rules_in_cache.remove(rule_in_cache)
-                    global_history[removed_rule][4] += time.time() - global_history[removed_rule][3]
-                    del recent_history[removed_rule]
-        
-def rule_handler(p4info_helper,sw1,rule):
-    global inserts
-    global inserts_count
-    global sim_start_time
-    if rule not in global_history:
-        global_history[rule] = [1,False,time.time(),0,0,rule] #[Count, Is_in_cache, Arrival_time, Cache_insertion_time, Overall_time_in_cache, rule]  
-        recent_history[rule] = 1
+def cache_handler(p4info_helper,sw1,pkt_dst_ip):
+
+    if pkt_dst_ip not in global_history:
+        global_history[pkt_dst_ip] = [1,False,time.time(),0,0] #[Count, Is_in_cache, Arrival_time, Cache_insertion_time, Overall_time_in_cache]  
+        recent_history[pkt_dst_ip] = 1
     else:
-        if rule not in recent_history:
-            recent_history[rule] = 1
+        if pkt_dst_ip not in recent_history:
+            recent_history[pkt_dst_ip] = 1
         else:
-            recent_history[rule] += 1
-            if recent_history[rule] > THRESHOLD:
-                if(global_history[rule][1] == False):
-                    res = switch_insert_rule_cmd(str(rule))
-                    inserts_count+=1
-                    #inserts.append((time.time()-sim_start_time,rule))
-                    rules_in_cache.append([rule,0])
-                    global_history[rule][1] = True
-                    global_history[rule][3] = time.time()
+            recent_history[pkt_dst_ip] += 1
+            if recent_history[pkt_dst_ip] >= threshold:
+                rules_in_cache = get_cache_size()
+                if(rules_in_cache < cache_size):
+                    insert_table_entry_flow_cache_drop(p4info_helper,"downstream", sw1, str(pkt_dst_ip))
+                    global_history[pkt_dst_ip][1] = True
+                    global_history[pkt_dst_ip][3] = time.time()
                 else:
-                    global_history[rule][0] += 1
+                    rules = get_k_lfu_rules(p4info_helper,sw1,"basic_tutorial_ingress.downstream.lfu")
+                    #insert_table_entry_flow_cache_drop(p4info_helper,"downstream", sw1, str(pkt_dst_ip))
+                    #readTableRules(p4info_helper,sw1)
+                    #rules = table_rules[sw1.name]
+                    #rules.sort(key=takeCounter)
+                    print(rules)
+                    lfu = rules[0]
+                    global_history[lfu[2]][0] += lfu[5]
+                    global_history[lfu[2]][1] = False
+                    global_history[lfu[2]][4] += time.time() - global_history[lfu[2]][3]
+                    del recent_history[lfu[2]]
+                    delete_table_entry_flow_cache_drop(p4info_helper,"downstream", sw1, lfu[2])                   
+                    insert_table_entry_flow_cache_drop(p4info_helper,"downstream", sw1, str(pkt_dst_ip))
+                    global_history[pkt_dst_ip][1] = True
+                    global_history[pkt_dst_ip][3] = time.time()
 
-def insert_preliminary_rules(p4info_helper,sw):
-
-    ##### Insert flow rules for sw #####
-
-
-    #Ingress Upstream Rules - Switch 1
-
-    insert_table_entry_t_vxlan_term(p4info_helper, sw=sw, dst_eth_addr="00:00:00:00:01:01")
-    insert_table_entry_t_vxlan_term(p4info_helper, sw=sw, dst_eth_addr="00:00:00:00:01:02")
-    insert_table_entry_t_forward_l2(p4info_helper, sw=sw, dst_eth_addr="00:00:00:00:01:01", port="\000\001") 
-    insert_table_entry_t_forward_l2(p4info_helper, sw=sw, dst_eth_addr="00:00:00:00:01:02", port="\000\002")
-    insert_table_entry_t_forward_underlay(p4info_helper, sw=sw, ip_dstAddr="192.168.0.100", port="\000\003") 
-    insert_table_entry_t_forward_underlay(p4info_helper, sw=sw, ip_dstAddr="192.168.0.2", port="\000\004") 
-    insert_table_entry_flow_cache(p4info_helper,"downstream2", sw=sw, dst_ip_addr="192.168.0.100", outter_ip="0.0.0.0", port="\000\003")
-
-    #Ingress Downstream rules - Switch 1 - Host 1
-
-    insert_table_entry_t_controller(p4info_helper,"downstream1", sw=sw, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
-    insert_table_entry_t_vtep(p4info_helper,"downstream1",sw=sw, src_eth_addr="00:00:00:00:01:01", vtep_ip="192.168.0.1")
-    insert_table_entry_t_vxlan_segment(p4info_helper,"downstream1", sw=sw, ingress_port="\000\001", vni=0x100000)
-    #insert_table_entry_flow_cache(p4info_helper,"downstream1", sw=sw, dst_ip_addr="10.0.1.2", outter_ip="0.0.0.0", port="\000\002")
-
-    #Ingress Downstream rules - Switch 1 - Host 2
-
-    insert_table_entry_t_controller(p4info_helper,"downstream2", sw=sw, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
-    insert_table_entry_t_vtep(p4info_helper,"downstream2",sw=sw, src_eth_addr="00:00:00:00:01:02", vtep_ip="192.168.0.1")
-    insert_table_entry_t_vxlan_segment(p4info_helper,"downstream2", sw=sw, ingress_port="\000\002", vni=0x100000)
-    #insert_table_entry_flow_cache(p4info_helper,"downstream2", sw=sw, dst_ip_addr="10.0.1.1", outter_ip="0.0.0.0", port="\000\001")
-
-    #Egress Downstream rules - Switch 1
-    insert_table_entry_t_send_frame(p4info_helper, sw=sw, dst_ip_addr="192.168.0.2", smac="00:aa:00:01:00:02", dmac="00:aa:00:02:00:03")
-    insert_table_entry_t_send_frame(p4info_helper, sw=sw, dst_ip_addr="192.168.0.100", smac="00:00:00:00:01:05", dmac="00:00:00:00:01:05")
-
-
-    """
-    ##### Insert flow rules for s2 #####
-
-    #Ingress Upstream Rules - Switch 2
-
-    insert_table_entry_t_vxlan_term(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:03")
-    insert_table_entry_t_vxlan_term(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:04")
-    insert_table_entry_t_forward_l2(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:03", port="\000\001") 
-    insert_table_entry_t_forward_l2(p4info_helper, sw=s2, dst_eth_addr="00:00:00:00:02:04", port="\000\002")
-    insert_table_entry_t_forward_underlay(p4info_helper, sw=s2, ip_dstAddr="192.168.0.100", port="\000\003") 
-    insert_table_entry_t_forward_underlay(p4info_helper, sw=s2, ip_dstAddr="192.168.0.1", port="\000\003") 
-
-    #Ingress Downstream rules - Switch 2 - Host 3 - VNI
-    insert_table_entry_t_controller(p4info_helper,"downstream1", sw=s2, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
-    insert_table_entry_t_vtep(p4info_helper,"downstream1",sw=s2, src_eth_addr="00:00:00:00:02:03", vtep_ip="192.168.0.2")
-    insert_table_entry_t_vxlan_segment(p4info_helper,"downstream1", sw=s2, ingress_port="\000\001", vni=0x100000)
-
-    #Ingress Downstream rules - Switch 2 - Host 4 - VNI
-    insert_table_entry_t_controller(p4info_helper,"downstream2", sw=s2, key_port="\000\003", ip_dstAddr="192.168.0.100", param_port="\000\003")
-    insert_table_entry_t_vtep(p4info_helper,"downstream2",sw=s2, src_eth_addr="00:00:00:00:02:04", vtep_ip="192.168.0.2")
-    insert_table_entry_t_vxlan_segment(p4info_helper,"downstream2", sw=s2, ingress_port="\000\002", vni=0x200000)
-    
-    #Egress Downstream rules - Switch 2
-    insert_table_entry_t_send_frame(p4info_helper, sw=s2, dst_ip_addr="192.168.0.1", smac="00:aa:00:02:00:03", dmac="00:aa:00:01:00:02")
-    insert_table_entry_t_send_frame(p4info_helper, sw=s2, dst_ip_addr="192.168.0.100", smac="00:aa:00:02:00:03", dmac="00:aa:00:01:00:02")
-    """
-
-def get_rule(pkt_dst_ip):
-    if pkt_dst_ip in Policy:
-        rule = Policy[pkt_dst_ip]
-        if "." in rule:
-            rule = rule.split("/")
-            rule_ip = rule[0]
-            rule_mask = int(rule[1])
-            return(rule_ip,rule_mask)
-    else:
-        print("FAILED")
 
 def main(p4info_file_path, bmv2_file_path, my_topology):
-    global packet_list
-
+    # Instantiate a P4Runtime helper from the p4info file
+    # - then need to read from the file compile from P4 Program, which call .p4info
     p4info_helper = p4runtime_lib.helper.P4InfoHelper(p4info_file_path)
     try:
-
-        sw = p4runtime_lib.bmv2.Bmv2SwitchConnection(
-            name='sw',
-            address='192.168.0.5:50051',
+        # Create 3 P4Runtime client instances - 1 for each switch. All the communication between the controller and the switches will be made throught this instances.
+        s1 = p4runtime_lib.bmv2.Bmv2SwitchConnection(
+            name='s1',
+            address='192.168.0.11:50051',
             device_id=0,
-            proto_dump_file='logs/sw-p4runtime-requests.txt')
+            proto_dump_file='logs/s1-p4runtime-requests.txt')
+        s2 = p4runtime_lib.bmv2.Bmv2SwitchConnection(
+            name='s2',
+            address='192.168.0.12:50052',
+            device_id=1,
+            proto_dump_file='logs/s2-p4runtime-requests.txt')
+        s3 = p4runtime_lib.bmv2.Bmv2SwitchConnection(
+            name='s3',
+            address='192.168.0.13:50053',
+            device_id=1,
+            proto_dump_file='logs/s3-p4runtime-requests.txt')
 
-        sw.MasterArbitrationUpdate()
+        # MasterArbitrationUpdate() command sends three parameters, from which the P4Runtime server (i.e., The switch) decides who is the master.
+        # Only the master can perform write operations (e.g., Rule insertion, Counters initialization). Any client can perform read operations (e.g., Read rules or counters)
+        # This command is required by P4Runtime before performing any other write operation
+        s1.MasterArbitrationUpdate()
+        s2.MasterArbitrationUpdate()
+        s3.MasterArbitrationUpdate()
 
-        sw.SetForwardingPipelineConfig(p4info=p4info_helper.p4info,
+        # Install the P4 Pipeline into the switches, as is defined by the P4Info file. This file defines the names and IDs of the P4 objects that needs to be used by 
+        # the client (Controller) and the server (Switch). The P4Info file is created by the P4C compiler at compilation time.
+
+        # Both MasterArbitrationUpdate() and SetForwardingPipelineConfig() are defined in switch.py under utils directory.
+        s1.SetForwardingPipelineConfig(p4info=p4info_helper.p4info,
                                         bmv2_json_file_path=bmv2_file_path)
-        print ("Installed P4 Program using SetForardingPipelineConfig on sw")
+        print "Installed P4 Program using SetForardingPipelineConfig on s1"
 
-        oracle  =  {"00:00:00:00:01:01":[sw,"10.0.1.1","\000\001",0x100000,1],#(MAC: [Switch,IP,Port,VNI,downstream_id])
-                    "00:00:00:00:01:02":[sw,"10.0.1.2","\000\002",0x100000,2]
+        s2.SetForwardingPipelineConfig(p4info=p4info_helper.p4info,
+                                        bmv2_json_file_path=bmv2_file_path)
+        print "Installed P4 Program using SetForardingPipelineConfig on s2"
+
+        s3.SetForwardingPipelineConfig(p4info=p4info_helper.p4info,
+                                        bmv2_json_file_path=bmv2_file_path)
+        print "Installed P4 Program using SetForardingPipelineConfig on s3"
+
+        count=0
+        h1 = "00:00:00:00:01:01"
+        h3 = "00:00:00:00:03:03"
+        oracle  =  {"00:00:00:00:01:01":[s1,"10.0.1.1","\000\001",0x100000],#(MAC: [Switch,IP,Port,VNI])
+                    "00:00:00:00:03:03":[s3,"10.0.3.3","\000\003",0x100000]
                     }
-        insert_preliminary_rules(p4info_helper,sw)
-        server_socket_insert.connect(("192.168.0.5", PORT))
-        sleep(1)
-        server_socket_delete.connect(("192.168.0.5", PORT))
+        table_rules[s1.name] = []
+        table_rules[s2.name] = []
+
+
+        ############################### Insert flow rules for Switch 1 ###############################
+
+        ################# Ingress Upstream Rules #################
+
+        # In Switch 1, if the host with MAC address 00:00:00:00:01:01 is connected to it, then decapsulate the packet
+        insert_table_entry_t_vxlan_term(p4info_helper, sw=s1, dst_eth_addr="00:00:00:00:01:01")
+        # In Switch 1, if the host with MAC address 00:00:00:00:01:01 is connected to it, then forward on port 1
+        insert_table_entry_t_forward_l2(p4info_helper, sw=s1, dst_eth_addr="00:00:00:00:01:01", port="\000\001") 
+
+        # In Switch 1, if the destination IP address of the outter IPv4 header is one of those three,
+        # then the packet is not destined to a host in this switch, and shouldn't be decapsulated, simply forwarded to the specified port
+        # It will have more importance in switch 2, because it is directly connected to the controller.
+        insert_table_entry_t_forward_underlay(p4info_helper, sw=s1, ip_dstAddr="192.168.0.100", port="\000\002") # the number may change, bu the port is s1 <-> s2 port
+        insert_table_entry_t_forward_underlay(p4info_helper, sw=s1, ip_dstAddr="192.168.0.21", port="\000\002")
+        insert_table_entry_t_forward_underlay(p4info_helper, sw=s1, ip_dstAddr="192.168.0.31", port="\000\003") # the number may change, bu the port is s1 <-> s3 port
+
+        ################# Ingress Downstream Rules #################
+
+        # In Switch 1 If the packet missed the cache, match against the TEMP_PORT (10 (0xa) in this case) which will always match, assign the IP of the controller to the packet, and send it to the controller through it's port (3 in this case)
+        # A better approach should be taken!
+        insert_table_entry_t_controller(p4info_helper,"downstream", sw=s1, key_port="\000\00a", ip_dstAddr="192.168.0.100", param_port="\000\003")
+        
+        # In Switch 1, match against the MAC address 00:00:00:00:01:01 and assign the address of the Vtep, which in this case should be 192.168.0.13
+        # The reason is that in this particular topology, Host 1 will try to send packets only to Host 3 (because Host 2 is the controller)
+        # and thus the Vtep IP address is the address of s1's interface to s3.
+        insert_table_entry_t_vtep(p4info_helper,"downstream",sw=s1, src_eth_addr="00:00:00:00:01:01", vtep_ip="192.168.0.13")
+
+        # In Switch 1, if the packet came from the device connected to port 1 (Host 1 in this case), then assign it the VNI of 0x100000 (The value was chosen arbitrarly)
+        insert_table_entry_t_vxlan_segment(p4info_helper,"downstream", sw=s1, ingress_port="\000\001", vni=0x100000)
+
+        # In Switch 1, If a packet's destination IP address is 10.0.3.3 (Host 3's IP address), then set the outter destination IP address to be the address of Switch 3's interface with Switch 1
+        # and assign the egress port accordingly (Switch 3 is connected to port 3 in this case)
+        # NOTE: If you want to test the behavior of the cache and the controller, comment this line and see if the controller inserts the rule to the cache! (This is really the point of the project right?)
+        insert_table_entry_flow_cache(p4info_helper,"downstream", sw=s1, dst_ip_addr="10.0.3.3", outter_ip="192.168.0.31", port="\000\003")
+
+
+
+
+
+
+        ############################### Insert flow rules for Switch 2 ###############################
+
+        ################# Ingress Upstream Rules #################
+
+        # The only host connected to Switch 2 is h2 which is the controller. We don't want to decapsulate the packets before forwarding them to the controller
+        # So basically, in the upstream, Switch 2 will only forward packets. 
+
+        insert_table_entry_t_forward_underlay(p4info_helper, sw=s2, ip_dstAddr="192.168.0.100", port="\000\002") # the number may change, bu the port is s2 <-> h2 port (controller)
+        insert_table_entry_t_forward_underlay(p4info_helper, sw=s2, ip_dstAddr="192.168.0.12", port="\000\001") # the number may change, bu the port is s2 <-> s1 port
+        insert_table_entry_t_forward_underlay(p4info_helper, sw=s2, ip_dstAddr="192.168.0.32", port="\000\003") # the number may change, bu the port is s2 <-> s3 port
+
+        # In this topology, switch 2 doesn't need downstream rules, since all the packets entering the switch are either from the controller, or from other switches.
+
+
+
+        ############################### Insert flow rules for Switch 3 ###############################
+
+        ################# Ingress Upstream Rules #################
+
+        insert_table_entry_t_vxlan_term(p4info_helper, sw=s3, dst_eth_addr="00:00:00:00:03:03")
+        insert_table_entry_t_forward_l2(p4info_helper, sw=s3, dst_eth_addr="00:00:00:00:03:03", port="\000\003") 
+
+        insert_table_entry_t_forward_underlay(p4info_helper, sw=s3, ip_dstAddr="192.168.0.100", port="\000\002") # the number may change, bu the port is s3 <-> s2 port
+        insert_table_entry_t_forward_underlay(p4info_helper, sw=s3, ip_dstAddr="192.168.0.13", port="\000\001") # the number may change, bu the port is s3 <-> s1 port
+        insert_table_entry_t_forward_underlay(p4info_helper, sw=s3, ip_dstAddr="192.168.0.23", port="\000\002") # the number may change, bu the port is s3 <-> s2 port
+
+        ################# Ingress Downstream Rules #################
+
+        insert_table_entry_t_controller(p4info_helper,"downstream", sw=s3, key_port="\000\00a", ip_dstAddr="192.168.0.100", param_port="\000\002") # Again, the number 2 may change!
+        insert_table_entry_t_vtep(p4info_helper,"downstream",sw=s3, src_eth_addr="00:00:00:00:03:03", vtep_ip="192.168.0.31")
+        insert_table_entry_t_vxlan_segment(p4info_helper,"downstream", sw=s3, ingress_port="\000\003", vni=0x100000)
+        insert_table_entry_flow_cache(p4info_helper,"downstream", sw=s3, dst_ip_addr="10.0.1.1", outter_ip="192.168.0.31", port="\000\001")
 
         try:
-            
-            thread.start_new_thread(rawSniffer,())    
-            #thread.start_new_thread(plot_statistics,(p4info_helper,sw))
-            #sleep(1000)
-            thread.start_new_thread(recv_deleted_rule,(server_socket_delete,))
-            #thread.start_new_thread(read_link_utilization_counter,(p4info_helper, sw, link_util_array))
+            thread.start_new_thread(sniff_and_enqueue,())
+            #thread.start_new_thread(get_k_lfu_rules,())
+            #thread.start_new_thread(readTableRules_thread,(p4info_helper,s1,s2))     
+            #thread.start_new_thread(plot_statistics,(p4info_helper,s1))
 
         except:
-           print ("Error: unable to start thread")
-        start_measure_flag = False
+            print "Error: unable to start thread"
         while True:
             if not q.empty():
-                pkt_dst_ip = q.get()
-                if stop_handler is False:
-                    rule = get_rule(pkt_dst_ip)
-                    if rule is not None:
-                        if start_measure_flag is False:
-                            thread.start_new_thread(read_link_utilization_counter,(p4info_helper, sw, link_util_array1,link_util_array2))
-                            start_measure_flag = True
-                        if (CACHE_SIZE != 0):
-                            rule_handler(p4info_helper,sw,rule)
-
-                """
+                pkt = q.get()
+                #pkt.show2()
                 if(pkt.haslayer(IP)):
                     src_ip = pkt.getlayer(IP).src
                     dst_ip = pkt.getlayer(IP).dst
@@ -631,30 +571,19 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
                             if(decap_pkt.haslayer(IP)):
                                 pkt_src_ip = decap_pkt.getlayer(IP).src
                                 pkt_dst_ip = decap_pkt.getlayer(IP).dst
-                                packet_list.append(pkt_dst_ip)
+                                outter_ip = resolve_outter_ip(oracle,pkt_src_mac,pkt_dst_mac,s1,s2)
                                 if(oracle[pkt_src_mac][3] == oracle[pkt_dst_mac][3]): #If the source and destination have the same VNI
-                                    if stop_handler is False:
-                                        rule = get_rule(pkt_dst_ip)
-                                        if rule is not None:
-                                            if start_measure_flag is False:
-                                                thread.start_new_thread(read_link_utilization_counter,(p4info_helper, sw, link_util_array1,link_util_array2))
-                                                #with open('test2.txt', 'w') as t_file:
-                                                #    t_file.write("Thread started succesfully")
-                                            start_measure_flag = True
-                                            #try:
-                                            #rule_handler(p4info_helper,sw,rule)
-                                            #except socket.error as msg:
-                                            #    print("in switch_insert_rule_cmd The error msg is: ")
-                                            #    print(msg)
-                                            #    server_socket_insert.close()
-                                            #    break
-                """
+                                    dst_ip_key = ip_to_insert(oracle,pkt_src_mac,pkt_dst_mac,s1,s2)
+                                    egress_port = resolve_egress_port(oracle,pkt_src_mac,pkt_dst_mac,s1,s2)
+                                    cache_handler(p4info_helper,s1,pkt_dst_ip)
+
+
         sys.stdout.flush()
 
 
     except KeyboardInterrupt:
         # using ctrl + c to exit
-        print ("Shutting down.")
+        print "Shutting down."
     except grpc.RpcError as e:
         printGrpcError(e)
 
@@ -663,6 +592,11 @@ def main(p4info_file_path, bmv2_file_path, my_topology):
 
 
 if __name__ == '__main__':
+    """ Simple P4 Controller
+        Args:
+            p4info:     指定 P4 Program 編譯產生的 p4info (PI 制定之格式、給予 controller 讀取)
+            bmv2-json:  指定 P4 Program 編譯產生的 json 格式，依據 backend 不同，而有不同的檔案格式
+     """
 
     parser = argparse.ArgumentParser(description='P4Runtime Controller')
     # Specified result which compile from P4 program
@@ -675,60 +609,23 @@ if __name__ == '__main__':
     parser.add_argument('--my_topology', help='Topology JSON File',
             type=str, action="store", required=False,
             default="./simple.json")
-
-    """
-    parser.add_argument('--threshold', help='Packet Miss Threshold',
-            type=int, action="store", required=False,
-            default=100)
-    parser.add_argument('--cache_size', help='Switchs Cache Size',
-            type=int, action="store", required=False,
-            default=64)
-    parser.add_argument('--random_rules_num', help='Random number of rules sample at Switchs CPU',
-            type=int, action="store", required=False,
-            default=1)
-    parser.add_argument('--run_time', help='Simulation Time',
-            type=int, action="store", required=False,
-            default=5)
-    parser.add_argument('--port', help='Socket Port',
-            type=int, action="store", required=False,
-            default=50001)
-    """
     args = parser.parse_args()
 
     if not os.path.exists(args.p4info):
         parser.print_help()
-        print ("\np4info file not found: %s\nPlease compile the target P4 program first." % args.p4info)
+        print "\np4info file not found: %s\nPlease compile the target P4 program first." % args.p4info
         parser.exit(1)
     if not os.path.exists(args.bmv2_json):
         parser.print_help()
-        print ("\nBMv2 JSON file not found: %s\nPlease compile the target P4 program first." % args.bmv2_json)
+        print "\nBMv2 JSON file not found: %s\nPlease compile the target P4 program first." % args.bmv2_json
         parser.exit(1)
     q = Queue()
+    flow_counter = {}
+    p4_counters = {}
+    table_rules = {}    #key = switch, value = [downstream,flow_table,match_ip,param_ip,param_port,counter]
     global_history = {}
     recent_history = {}
-    rules_in_cache = []
-    sim_start_time = 0
-    link_util_array1 = []
-    link_util_array1.append((0,0))
-    link_util_array2 = []
-    link_util_array2.append((0,0))
-    server_socket_insert = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket_delete = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #THRESHOLD = args.threshold
-    #CACHE_SIZE = args.cache_size
-    #RANDOM_RULES_NUM = args.random_rules_num
-    #RUN_TIME = args.run_time
-    #PORT = args.port 
-
-
-
-    with open('flow_rule_dict.pickle', 'rb') as handle:
-        Policy = pickle.load(handle)
-    for key in Policy:
-        new_key = str(key)
-        new_val = str(Policy[key])
-        del Policy[key]
-        Policy[new_key] = new_val
-
+    threshold = 3
+    cache_size = 20
     # Pass argument into main function
     main(args.p4info, args.bmv2_json, args.my_topology)
